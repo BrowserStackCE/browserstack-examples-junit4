@@ -1,0 +1,10 @@
+offers/CheckOffers.class
+trial/trial.class
+user/CheckFavouriteItems.class
+e2e/EndToEndTest.class
+login/FavouritesEnforcesLoginTest.class
+login/LockedUserTest.class
+user/ImageNotLoading.class
+user/CheckExistingOrders.class
+product/LowestToHighest.class
+product/ApplyingFilters.class

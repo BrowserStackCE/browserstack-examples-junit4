@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>browserstack-examples-junit4</groupId>
+  <artifactId>browserstack-examples-junit4</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>browserstack-examples-junit4</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.googlecode.json-simple</groupId>
+      <artifactId>json-simple</artifactId>
+      <version>1.1.1</version>
+	</dependency>
+    
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>3.141.59</version>
+    </dependency>
+    
+    
+    <dependency>
+    	<groupId>com.browserstack</groupId>
+    	<artifactId>browserstack-local-java</artifactId>
+    	<version>1.0.6</version>
+	</dependency>
+    
+    
+    
+  
+    
+    
+    
+  </dependencies>
+
+  <build>
+  
+  
+    <testSourceDirectory>${project.basedir}/src/test/suites</testSourceDirectory>
+  
+  
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+        </plugin>
+          <plugin>
+    	<groupId>org.apache.maven.plugins</groupId>
+    	<artifactId>maven-surefire-plugin</artifactId>
+    	<version>3.0.0-M1</version>
+   		 <configuration>
+       	 	<parallel>all</parallel>
+         	<threadCount>10</threadCount>
+         	<redirectTestOutputToFile>false</redirectTestOutputToFile>
+   		 </configuration>
+		</plugin>
+        
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  
+  
+  
+  	<profiles>
+        <profile>
+            <properties>
+                <on-premise>onPremise</on-premise>
+            </properties>
+            <id>on-prem</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                            <profileId>on-prem</profileId>
+                        </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        
+        
+        
+        <profile>
+            <properties>
+                <on-prem-suite>on-prem-suite</on-prem-suite>
+            </properties>
+            <id>on-prem-suite</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                        <includes>
+            				<include>ImageNotLoading.java</include>
+            				<include>CheckFavouriteItems.java</include>
+							<include>CheckExistingOrders.java</include> 
+							<include>ApplyingFilters.java</include>
+							<include>LowestToHighest.java</include>
+							<include>CheckOffers.java</include>
+							<include>FavouritesEnforcesLoginTest.java</include>
+							<include>LockedUserTest.java</include>
+							<include>EndToEndTest.java</include>					
+       					    </includes>
+                            <systemPropertyVariables>
+                            <profileId>on-prem-suite</profileId>
+                        </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        
+        
+      <profile>
+            <properties>
+                <bstack-single>bstack-single</bstack-single>
+            </properties>
+            <id>bstack-single</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                       
+                            <systemPropertyVariables>
+                            <profileId>bstack-single</profileId>
+                        </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        
+        
+        <profile>
+            <properties>
+                <bstack-local>bstack-local</bstack-local>
+            </properties>
+            <id>bstack-local</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                        	
+                       
+                            <systemPropertyVariables>
+                            <profileId>bstack-local</profileId>
+                        </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        
+        
+         <profile>
+            <properties>
+                <docker>docker</docker>
+            </properties>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                       
+                            <systemPropertyVariables>
+                            <profileId>docker</profileId>
+                        </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        
+        
+        
+        
+         <profile>
+            <properties>
+                <bstack-parallel>bstack-parallel</bstack-parallel>
+            </properties>
+            <id>bstack-parallel</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                       		<includes>
+            				<include>ImageNotLoading.java</include>
+            				<include>CheckFavouriteItems.java</include>
+							<include>CheckExistingOrders.java</include> 
+							<include>ApplyingFilters.java</include>
+							<include>LowestToHighest.java</include>
+							<include>CheckOffers.java</include>
+							<include>FavouritesEnforcesLoginTest.java</include>
+							<include>LockedUserTest.java</include>
+							<include>EndToEndTest.java</include>
+       					    </includes>
+                            <systemPropertyVariables>
+                            <profileId>bstack-parallel</profileId>
+                        </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        
+        
+        
+         <profile>
+            <properties>
+                <bstack-local-parallel>bstack-local-parallel</bstack-local-parallel>
+            </properties>
+            <id>bstack-local-parallel</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                       		<includes>
+            				<include>ImageNotLoading.java</include>
+            				<include>CheckFavouriteItems.java</include>
+							<include>CheckExistingOrders.java</include> 
+							<include>ApplyingFilters.java</include>
+							<include>LowestToHighest.java</include>
+							<include>CheckOffers.java</include>
+							<include>FavouritesEnforcesLoginTest.java</include>
+							<include>LockedUserTest.java</include>
+							<include>EndToEndTest.java</include>
+       					    </includes>
+                            <systemPropertyVariables>
+                            <profileId>bstack-local-parallel</profileId>
+                        </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        
+        
+         <profile>
+            <properties>
+                <seq>seq</seq>
+            </properties>
+            <id>seq</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                       		<includes>
+            				<include>trial.java</include>
+       					    </includes>
+                            <systemPropertyVariables>
+                            <profileId>on-prem</profileId>
+                        </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+  	</profiles>
+  
+  
+  
+  
+  
+  
+</project>
