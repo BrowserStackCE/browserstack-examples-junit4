@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: login.LockedUserTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 42.3 s - in login.LockedUserTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 39.516 s - in login.LockedUserTest

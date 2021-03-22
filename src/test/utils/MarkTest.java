@@ -1,9 +1,14 @@
 package utils;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MarkTest {
 	
+	/*
+	
+	public static String platformtemp = System.getProperty("profileId");
 	
 	static String e2eFailreason = "Placing Order Was Unsuccessful";
 	
@@ -37,37 +42,64 @@ public class MarkTest {
 	
 	public static String ImageNotLoadingPassReason = "Image Not Loading";
 	
+	*/
+	
 	
 	public static void MarkEndToEndTest(WebDriver driver,Boolean ConfirmationMessage,Boolean CheckNoOfOrders) {
 		
-		  if(ConfirmationMessage==false || CheckNoOfOrders == false) {
+		if(CommonSteps.platformtemp.contains("bstack"))
+		{
+		
+		
+		  if(Constants.ConfirmationMessage==false || Constants.CheckNoOfOrders == false) {
 			  
-			  driver = CommonSteps.markTestFail(driver, e2eFailreason); 
+			  driver = CommonSteps.markTestFail(driver, Constants.EndToEndfailreason); 
 		  
 		  }
 	  
 		  else {
 		  
-			  driver = CommonSteps.markTestPass(driver, e2ePassreason);
+			  driver = CommonSteps.markTestPass(driver, Constants.EndToEndPassreason);
 		 
 		  }
 		
+		}
 	}
 	
 	
-	public static void MarkFavouriteEnforcesLoginTest(WebDriver driver,String CurrentUrl,String assertUrl) {
+	public static void MarkFavouriteEnforcesLoginTest(WebDriver driver,String assertUrl) {
 	
-	
-		if(CurrentUrl.equals(assertUrl)) {
+		System.out.println("Inside Test Marking Block");
+		
+		if(CommonSteps.platformtemp.contains("bstack"))
+		{
+		
+			if(CommonSteps.platformtemp.contains("bstack-local")) {
+				
+				System.out.println("Changing assertUrl to Local Url");
 			
-			CommonSteps.markTestPass(driver, MarkFavouriteEnforcesLoginTestPassReason);
+				Constants.FavouriteEnforcesLoginTestassertUrl = "http://localhost:3000/signin?favourites=true";
+			
+			}
 		
-		}
+			WebDriverWait wait = new WebDriverWait(driver, 40);
+		
+			wait.until(ExpectedConditions.urlToBe(Constants.FavouriteEnforcesLoginTestassertUrl));
+
+			String CurrentUrl = driver.getCurrentUrl();
+		
+			if(CurrentUrl.equals(Constants.FavouriteEnforcesLoginTestassertUrl)) {
+			
+				CommonSteps.markTestPass(driver, Constants.FavouriteEnforcesLoginTestPassReason);
+		
+			}
 	
-		else {
+			else {
 		
-			CommonSteps.markTestFail(driver, MarkFavouriteEnforcesLoginTestFailReason);
+				CommonSteps.markTestFail(driver, Constants.FavouriteEnforcesLoginTestFailReason);
 		
+			}
+			
 		}
 	
 
@@ -76,16 +108,20 @@ public class MarkTest {
 	
 	public static void MarkLockedUserTest(WebDriver driver,Boolean CheckIfDisplayed) {
 	
-		if(CheckIfDisplayed == true){
+		if(CommonSteps.platformtemp.contains("bstack"))
+		{
+		
+			if(CheckIfDisplayed == true){
 			
-			driver = CommonSteps.markTestPass(driver, LockedUserTestPassReason);
+				driver = CommonSteps.markTestPass(driver, Constants.LockedUserTestPassReason);
 		
-		}
+			}
 	
-		else {
+			else {
 		
-			driver = CommonSteps.markTestFail(driver, LockedUserTestFailReason);
+				driver = CommonSteps.markTestFail(driver, Constants.LockedUserTestFailReason);
 		
+			}
 		}
 	
 	}
@@ -93,15 +129,20 @@ public class MarkTest {
 	
 	public static void MarkApplyingFilters(WebDriver driver,int initialProductCount, int finalProductCount) {
 		
-		if(initialProductCount != finalProductCount) {
+		if(CommonSteps.platformtemp.contains("bstack"))
+		{
+		
+			if(initialProductCount != finalProductCount) {
 			
-			CommonSteps.markTestPass(driver, ApplyingFiltersPassReason);
+				CommonSteps.markTestPass(driver, Constants.ApplyingFiltersPassReason);
 		
-		}
+			}
 	
-		else {
+			else {
 		
-			CommonSteps.markTestFail(driver, ApplyingFiltersFailReason);
+				CommonSteps.markTestFail(driver, Constants.ApplyingFiltersFailReason);
+		
+			}
 		
 		}
 	
@@ -111,14 +152,20 @@ public class MarkTest {
 	
 	public static void LowestToHighest(WebDriver driver, int flag) {
 		
-		if(flag == 1){
+		if(CommonSteps.platformtemp.contains("bstack"))
 			
-			CommonSteps.markTestFail(driver, LowestToHighestFailReason);
+		{
 		
-		}
-		else {
+			if(flag == 1){
+			
+				CommonSteps.markTestFail(driver, Constants.LowestToHighestFailReason);
 		
-			CommonSteps.markTestPass(driver, LowestToHighestPassReason);
+			}
+			else {
+		
+				CommonSteps.markTestPass(driver, Constants.LowestToHighestPassReason);
+		
+			}
 		
 		}
 	
@@ -126,55 +173,65 @@ public class MarkTest {
 	
 	
 	public static void CheckExistingOrders(WebDriver driver, int orderCount) {
-		
-		 if(orderCount <= 0)
-		 {
+		if(CommonSteps.platformtemp.contains("bstack"))
+		{
+			
+			if(orderCount <= 0)
+			{
 		 
-			 CommonSteps.markTestFail(driver, CheckExistingOrdersFailReason);
+				CommonSteps.markTestFail(driver, Constants.CheckExistingOrdersFailReason);
 		 
+			}
+			
+			else {
 		 
-		 }
-	
-		 else {
+				CommonSteps.markTestPass(driver, Constants.CheckExistingOrdersPassReason);
 		 
-			 CommonSteps.markTestPass(driver, CheckExistingOrdersPassReason);
-		 
-		 }
+			}
+			
+		}
 		 
 	}	
 	
 	
 	public static void MarkCheckFavouriteItems(WebDriver driver, int favouriteCount) {
 		
-		 if(favouriteCount <= 0)
-		 {
+		if(CommonSteps.platformtemp.contains("bstack"))
+		{
+			
+			if(favouriteCount <= 0){
 		 
-			 CommonSteps.markTestFail(driver, CheckFavouriteItemsFailReason);
+				CommonSteps.markTestFail(driver, Constants.CheckFavouriteItemsFailReason);
 		 
+			}
+			
+			else {
 		 
-		 }
-	
-		 else {
+				CommonSteps.markTestPass(driver, Constants.CheckFavouriteItemsPassReason);
 		 
-			 CommonSteps.markTestPass(driver, CheckFavouriteItemsPassReason);
-		 
-		 }
-		 
+			}
+			
+		}
 	}	
 	
 	
 	public static void MarkImageNotLoading(WebDriver driver, int flag) {
-		
-		if(flag==1) {
-			
-			CommonSteps.markTestFail(driver, ImageNotLoadingFailReason);
-			
-		}
 	
-		else{
+		if(CommonSteps.platformtemp.contains("bstack"))
+		{
 		
-			CommonSteps.markTestPass(driver, ImageNotLoadingPassReason);
+			if(flag==1) {
+			
+				CommonSteps.markTestFail(driver, Constants.ImageNotLoadingFailReason);
+			
+			}
+	
+			else{
 		
+				CommonSteps.markTestPass(driver, Constants.ImageNotLoadingPassReason);
+		
+			}
+			
 		}
 		 
 	}

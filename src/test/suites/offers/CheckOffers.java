@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utils.Constants;
 import utils.DriverFactory;
 
 public class CheckOffers extends DriverFactory {
@@ -24,43 +25,44 @@ public class CheckOffers extends DriverFactory {
 	public String asserturl = "https://bstackdemo.com/offers";
 
 	@Test
+	//@Description("CheckOffers")
 
 	public void main() {
 		// TODO Auto-generated method stub
 
 		driver.manage().window().maximize();
 
-		WebElement signin = driver.findElement(By.id(LocatorSignInButton));
+		WebElement signin = driver.findElement(By.id(Constants.CheckOffersLocatorSignInButton));
 
 		signin.click();
 
-		WebElement username = driver.findElement(By.id(LocatorUserName));
+		WebElement username = driver.findElement(By.id(Constants.CheckOffersLocatorUserName));
 
-		username.sendKeys(UserName);
+		username.sendKeys(Constants.CheckOffersUserName);
 
 		username.sendKeys(Keys.ENTER);
 
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(LocatorPassword)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Constants.CheckOffersLocatorPassword)));
 
-		password.sendKeys(Password);
+		password.sendKeys(Constants.CheckOffersPassword);
 
 		password.sendKeys(Keys.ENTER);
 
-		WebElement Login = driver.findElement(By.id(LocatorLoginButton));
+		WebElement Login = driver.findElement(By.id(Constants.CheckOffersLocatorLoginButton));
 
 		Login.click();
 
-		WebElement offers = driver.findElement(By.id(LocatorOffers));
+		WebElement offers = driver.findElement(By.id(Constants.CheckOffersLocatorOffers));
 
 		offers.click();
 
-		wait.until(ExpectedConditions.urlToBe(asserturl));
+		wait.until(ExpectedConditions.urlToBe(Constants.CheckOffersasserturl));
 
-		String CurrentUrl = driver.getCurrentUrl();
+		Constants.CheckOffersCurrentUrl = driver.getCurrentUrl();
 
-		assertEquals(CurrentUrl, asserturl);
+		assertEquals(Constants.CheckOffersCurrentUrl, Constants.CheckOffersasserturl);
 
 	}
 

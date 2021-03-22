@@ -6,77 +6,57 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import utils.CommonSteps;
+import utils.Constants;
 import utils.DriverFactory;
 import utils.MarkTest;
 
 public class ImageNotLoading extends DriverFactory {
-
-	public String initialurl = "https://bstackdemo.com/";
-	public String LocatorSignIn = "signin";
-	public String LocatorUserNameField = "react-select-2-input";
-	public String UserName = "image_not_loading_user";
-	public String LocatorPassword = "react-select-3-input";
-	public String Password = "testingisfun99";
-	public String LocatorLogin = "login-btn";
-	public String FailReason = "Image Loaded";
-	public String PassReason = "Image Not Loading";
-	
-
 	@Test
+	//@Description("ImageNotLoading")
 	public void main() {
 		// TODO Auto-generated method stub
 
-		WebElement signin = driver.findElement(By.id(LocatorSignIn));
+		WebElement signin = driver.findElement(By.id(Constants.ImageNotLoadingLocatorSignIn));
 
 		signin.click();
 		
-		WebElement username = driver.findElement(By.id(LocatorUserNameField));
+		WebElement username = driver.findElement(By.id(Constants.ImageNotLoadingLocatorUserNameField));
 
-		username.sendKeys(UserName);
+		username.sendKeys(Constants.ImageNotLoadingUserName);
 
 		username.sendKeys(Keys.ENTER);
 
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(LocatorPassword)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Constants.ImageNotLoadingLocatorPassword)));
 
-		password.sendKeys(Password);
+		password.sendKeys(Constants.ImageNotLoadingPassword);
 
 		password.sendKeys(Keys.ENTER);
 
-		WebElement Login = driver.findElement(By.id(LocatorLogin));
+		WebElement Login = driver.findElement(By.id(Constants.ImageNotLoadingLocatorLogin));
 
 		Login.click();
 		
-		//abcd
+		Constants.ImageNotLoadingproductcount = CommonSteps.productCount(driver);
 		
-		int flag=0;
-		
-		String src;
-		
-		int productcount = CommonSteps.productCount(driver);
-		
-		for(int i=1;i<=productcount;i++) {
+		for(int i=1;i<=Constants.ImageNotLoadingproductcount;i++) {
 		
 		WebElement image = driver.findElement(By.xpath("//*[@id=\"" +i+ "\"]/div[2]/img"));
 		
-		src = image.getAttribute("src");
+		Constants.src = image.getAttribute("src");
 		
-			if(src.length() != 0) {
+			if(Constants.src.length() != 0) {
 			
-				flag = 1;
+				Constants.flag = 1;
 		
 			}
-		}	
-		
-		if(CommonSteps.platformtemp.contains("bstack"))
-		{
 			
-			MarkTest.MarkImageNotLoading(driver, flag);
-		
-		}
+		}	
+			
+		MarkTest.MarkImageNotLoading(driver, Constants.flag);
+
 		
 	
 	}

@@ -6,54 +6,37 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import utils.CommonSteps;
+import utils.Constants;
 import utils.DriverFactory;
 import utils.MarkTest;
 
 public class CheckFavouriteItems extends DriverFactory {
-	
-	
-	public String LocatorSignInButton = "signin";
-	
-	public String LocatorUserName  = "react-select-2-input";
-	
-	public String UserName = "existing_orders_user";
-	
-	public String LocatorPassword = "react-select-3-input";
-	
-	public String Password = "testingisfun99";
-	
-	public String LocatorLoginButton = "login-btn";
-	
-	public String PassReason = "Products Marked As Favourites";
-	
-	public String FailReason = "Failed To Mark Products In Favourites";
-	
 
 	@Test
+	//@Description("CheckFavouriteItems")
 	public void main() {
 		// TODO Auto-generated method stub
 
-		WebElement signin = driver.findElement(By.id(LocatorSignInButton));
+		WebElement signin = driver.findElement(By.id(Constants.CheckFavouriteItemsLocatorSignInButton));
 
 		signin.click();
 
-		WebElement username = driver.findElement(By.id(LocatorUserName));
+		WebElement username = driver.findElement(By.id(Constants.CheckFavouriteItemsLocatorUserName));
 
-		username.sendKeys(UserName);
+		username.sendKeys(Constants.CheckFavouriteItemsUserName);
 
 		username.sendKeys(Keys.ENTER);
 
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(LocatorPassword)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Constants.CheckFavouriteItemsLocatorPassword)));
 
-		password.sendKeys(Password);
+		password.sendKeys(Constants.CheckFavouriteItemsPassword);
 
 		password.sendKeys(Keys.ENTER);
 
-		WebElement loginbutton = driver.findElement(By.id(LocatorLoginButton));
+		WebElement loginbutton = driver.findElement(By.id(Constants.CheckFavouriteItemsLocatorLoginButton));
 
 		loginbutton.click();
 		
@@ -67,30 +50,20 @@ public class CheckFavouriteItems extends DriverFactory {
 				System.out.println(e.getMessage());
 			}
 		
-			WebElement SelectFavourite = driver.findElements(By.className("MuiIconButton-label")).get(index);
-		
+			WebElement SelectFavourite = driver.findElements(By.className(Constants.SelectFavouriteLocator)).get(index);
 
 			SelectFavourite.click();
 		
-		
-		
 		}
 
-		WebElement Favourites = driver.findElement(By.id("favourites"));
+		WebElement Favourites = driver.findElement(By.id(Constants.Favourites));
 
 		Favourites.click();
 	
-		int favouriteCount = CommonSteps.favouriteCount(driver);
-		
-		System.out.println("Favourite Count " +favouriteCount);
-		 
-		if(CommonSteps.platformtemp.contains("bstack"))
-		{
-		
-		MarkTest.MarkCheckFavouriteItems(driver, favouriteCount);
+		Constants.favouriteCount = CommonSteps.favouriteCount(driver);
 
-		}
-	
+		
+		MarkTest.MarkCheckFavouriteItems(driver, Constants.favouriteCount);	
 	
 	}
 

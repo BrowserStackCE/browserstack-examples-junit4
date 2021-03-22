@@ -8,63 +8,48 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import utils.CommonSteps;
+import utils.Constants;
 import utils.DriverFactory;
 import utils.MarkTest;
 
 public class LockedUserTest extends DriverFactory {
 
-	String initialurl = "https://bstackdemo.com/";
-	String LocatorSignInButton = "signin";
-	String LocatorUserName = "react-select-2-input";
-	String LocatorPassword = "react-select-3-input";
-	String LocatorSignIn = "login-btn";
-	String UserName = "locked_user";
-	String Password = "testingisfun99";
-	String LocatorAccountLockedMessage = "api-error";
-	String PassReason = "Account Locked Message Displayed";
-	String FailReason = "Account Locked Message Not Displayed";
 	
 
 	@Test
-
+	//@Description("LockedUserTest")
 	public void lockedUserTest() throws Exception {
 		// TODO Auto-generated method stub
 
 		driver.manage().window().maximize();
 
-		WebElement signin = driver.findElement(By.id(LocatorSignInButton));
+		WebElement signin = driver.findElement(By.id(Constants.LockedUserTestLocatorSignInButton));
 
 		signin.click();
 
-		WebElement username = driver.findElement(By.id(LocatorUserName));
+		WebElement username = driver.findElement(By.id(Constants.LockedUserTestLocatorUserName));
 
-		username.sendKeys(UserName);
+		username.sendKeys(Constants.LockedUserTestUserName);
 
 		username.sendKeys(Keys.ENTER);
 
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 
-		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(LocatorPassword)));
+		WebElement password = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(Constants.LockedUserTestLocatorPassword)));
 
-		password.sendKeys(Password);
+		password.sendKeys(Constants.LockedUserTestPassword);
 
 		password.sendKeys(Keys.ENTER);
 
-		WebElement Signin = driver.findElement(By.id(LocatorSignIn));
+		WebElement Signin = driver.findElement(By.id(Constants.LockedUserTestLocatorSignIn));
 
 		Signin.click();
 
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("api-error")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(Constants.LocatorAccountLockedMessage)));
 
-		Boolean CheckIfDisplayed = driver.findElement(By.className(LocatorAccountLockedMessage)).isDisplayed();
-		
-		if(CommonSteps.platformtemp.contains("bstack"))
-		{
+		Constants.CheckIfDisplayed = driver.findElement(By.className(Constants.LocatorAccountLockedMessage)).isDisplayed();
 			
-			MarkTest.MarkLockedUserTest(driver, CheckIfDisplayed);
-			
-		}	
+		MarkTest.MarkLockedUserTest(driver, Constants.CheckIfDisplayed);
 		
 
 	}

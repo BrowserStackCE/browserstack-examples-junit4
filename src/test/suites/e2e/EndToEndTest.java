@@ -11,59 +11,46 @@ import pages.Login;
 import utils.DriverFactory;
 import utils.MarkTest;
 import utils.CommonSteps;
+import utils.Constants;
 
 public class EndToEndTest extends DriverFactory {
-
-	String asserturl = "https://bstackdemo.com/orders";
-
-	String initialurl = "https://bstackdemo.com/";
 	
-	String failreason = "Placing Order Was Unsuccessful";
-	
-	String Passreason = "Order Placed Successfully";
-	
-	Boolean  CheckNoOfOrders  = false;
-	
-	Boolean ConfirmationMessage = false;
-
 	 
 	  @Test 
+	  // @Description("EndToEndTest")
 	  public void EndToEnd() throws Exception { 
 		  // TODO Auto-generated method stub
 	 
-	  HomePage homepage = new HomePage(driver);
+		  HomePage homepage = new HomePage(driver);
 	  
-	  homepage.ClickSignInButton();
+		  homepage.ClickSignInButton();
 	  
-	  Login login = new Login(driver);
+		  Login login = new Login(driver);
 	  
-	  login.login();
+		  login.login();
 	  
-	  homepage.AddToCart();
+		  homepage.AddToCart();
 	    
-	  Bag bag = new Bag(driver);
+		  Bag bag = new Bag(driver);
 	  
-	  bag.ClickCheckoutButton();
+		  bag.ClickCheckoutButton();
 	  
-	  Checkout checkout = new Checkout(driver);
+		  Checkout checkout = new Checkout(driver);
 	  
-	  checkout.EnterCheckoutDetails();
+		  checkout.EnterCheckoutDetails();
 	  
-	  ConfirmationMessage = CommonSteps.isConfirmationMessageDisplayed(driver);
+		  Constants.ConfirmationMessage = CommonSteps.isConfirmationMessageDisplayed(driver);
 	  
-	  CheckNoOfOrders = CommonSteps.checkNoOfItems(driver);
+		  Constants.CheckNoOfOrders = CommonSteps.checkNoOfItems(driver);
  
-	  Confirmation confirmation = new Confirmation(driver);
+		  Confirmation confirmation = new Confirmation(driver);
 	  
-	  confirmation.ClickContinueShoppingButton();
+		  confirmation.ClickContinueShoppingButton();
 	  
-	  homepage.ClickOrderButton();
+		  homepage.ClickOrderButton();
 	  
-	  	if(CommonSteps.platformtemp.contains("bstack")){
-		  
-	  		MarkTest.MarkEndToEndTest(driver, ConfirmationMessage, CheckNoOfOrders);
+		  MarkTest.MarkEndToEndTest(driver, Constants.ConfirmationMessage, Constants.CheckNoOfOrders);
 	 
-	  	}
 	 
 
 	  }
