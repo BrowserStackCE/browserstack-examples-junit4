@@ -1,0 +1,7 @@
+com/browserstack/pages/Confirmation.class
+com/browserstack/pages/HomePage.class
+com/browserstack/pages/Checkout.class
+com/browserstack/pages/Login.class
+com/browserstack/pages/Bag.class
+com/browserstack/pages/Offers.class
+com/browserstack/pages/Favourites.class
