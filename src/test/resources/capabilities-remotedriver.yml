@@ -15,18 +15,18 @@ localDriver:
 
 remoteDriver:
   hubUrl: https://hub-cloud.browserstack.com/wd/hub
-  user: BROWSERSTACK_USER
-  accessKey: BROWSERSTACK_ACCESSKEY
+  user: BROWSERSTACK_USERNAME
+  accessKey: BROWSERSTACK_ACCESS_KEY
   localTunnel:
     enable: false
     forceLocal: false
   common_capabilities:
     project:
-    buildPrefix:
+    buildPrefix: junit4
     capabilities:
       browserstack.debug: true
       browserstack.networkLogs: true
-      browserstack.console: true
+      browserstack.console: debug
   platforms:
     - name: Win10_IE11
       os: Windows

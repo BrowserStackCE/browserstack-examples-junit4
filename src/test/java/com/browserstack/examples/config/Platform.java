@@ -1,5 +1,6 @@
 package com.browserstack.examples.config;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 
@@ -16,11 +17,15 @@ public class Platform {
 
     private String os;
 
-    private String os_version;
+    @JsonProperty("os_version")
+    private String osVersion;
 
     private String browser;
 
-    private String browser_version;
+    @JsonProperty("browser_version")
+    private String browserVersion;
+
+    private String device;
 
     private String driverPath;
 
