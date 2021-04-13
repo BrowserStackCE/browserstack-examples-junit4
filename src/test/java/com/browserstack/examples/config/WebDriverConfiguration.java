@@ -24,18 +24,18 @@ public class WebDriverConfiguration {
 
     private DriverType driverType;
 
-    private LocalDriverConfig localDriver;
+    private LocalDriverConfig localDriverConfig;
 
-    private RemoteDriverConfig remoteDriver;
+    private RemoteDriverConfig remoteDriverConfig;
 
     public List<Platform> getActivePlatforms() {
         List<Platform> activePlatforms = Collections.emptyList();
         switch (driverType) {
             case remoteDriver:
-                activePlatforms = remoteDriver.getPlatforms();
+                activePlatforms = remoteDriverConfig.getPlatforms();
                 break;
             case localDriver:
-                activePlatforms = localDriver.getPlatforms();
+                activePlatforms = localDriverConfig.getPlatforms();
                 break;
         }
 
