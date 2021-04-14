@@ -24,19 +24,20 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 public abstract class AbstractWebDriverTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractWebDriverTest.class);
+    private static final String CAPABILITIES_FILE_PROP = "capabilities.config";
+    private static final String DEFAULT_CAPABILITIES_FILE = "capabilities.yml";
 
-//    @Parameterized.Parameters(name = "{0}")
-    @Parameterized.Parameters(name = "{0}")
+    @Parameterized.Parameters
     public static Iterable<Object[]> data() throws IOException {
-        String capabilitiesConfigFile = System.getProperty("capabilities.config", "capabilities.yml");
+        String capabilitiesConfigFile = System.getProperty(CAPABILITIES_FILE_PROP, DEFAULT_CAPABILITIES_FILE);
         LOGGER.debug("Using capabilities configuration from FILE :: {}", capabilitiesConfigFile);
         URL resourceURL = AbstractWebDriverTest.class.getClassLoader().getResource(capabilitiesConfigFile);
 
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
         webDriverConfiguration = objectMapper.readValue(resourceURL, WebDriverConfiguration.class);
-        LOGGER.debug("Web Driver Configuration :: {}", webDriverConfiguration);
         List<Object[]> returnData = new ArrayList<>();
         List<Platform> platforms = webDriverConfiguration.getActivePlatforms();
+        LOGGER.debug("Running tests on {} active platforms.", platforms.size());
 
         platforms.forEach(platform -> {
             returnData.add(new Object[]{platform});

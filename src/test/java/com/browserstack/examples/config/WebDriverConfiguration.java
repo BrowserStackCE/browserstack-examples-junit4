@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.ToString;
 
@@ -24,8 +25,10 @@ public class WebDriverConfiguration {
 
     private DriverType driverType;
 
+    @JsonProperty("localDriver")
     private LocalDriverConfig localDriverConfig;
 
+    @JsonProperty("remoteDriver")
     private RemoteDriverConfig remoteDriverConfig;
 
     public List<Platform> getActivePlatforms() {

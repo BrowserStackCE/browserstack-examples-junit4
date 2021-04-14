@@ -22,7 +22,7 @@ remoteDriver:
     forceLocal: false
   common_capabilities:
     project:
-    buildPrefix: junit4
+    buildPrefix: browserstack-examples-junit4
     capabilities:
       browserstack.debug: true
       browserstack.networkLogs: true
@@ -48,3 +48,11 @@ remoteDriver:
       os_version: Catalina
       browser: Safari
       browser_version: '13.0'
+    - name: iphone12
+      os_version: 14
+      device: iPhone 12
+      real_mobile: true
+    - name: galaxy_s20
+      os_version: '10.0'
+      device: Samsung Galaxy S20
+      real_mobile: true

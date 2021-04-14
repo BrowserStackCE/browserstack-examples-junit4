@@ -1,6 +1,9 @@
 package com.browserstack.examples.rule;
 
-import com.browserstack.examples.config.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Paths;
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
@@ -23,9 +26,11 @@ import org.openqa.selenium.safari.SafariOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Paths;
+import com.browserstack.examples.config.BrowserType;
+import com.browserstack.examples.config.CommonCapabilities;
+import com.browserstack.examples.config.Platform;
+import com.browserstack.examples.config.RemoteDriverConfig;
+import com.browserstack.examples.config.WebDriverConfiguration;
 
 /**
  * Created with IntelliJ IDEA.
@@ -40,6 +45,10 @@ public class WebDriverProviderRule extends TestWatcher {
     private static final String WEBDRIVER_IE_DRIVER = "webdriver.ie.driver";
     private static final String WEBDRIVER_EDGE_DRIVER = "webdriver.edge.driver";
     private static final String TEST_STATUS_SCRIPT = "browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"%s\", \"reason\": \"%s\"}}";
+    private static final String BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
+    private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
+    private static final String BUILD_ID = "BUILD_ID";
+    private static final String DEFAULT_BUILD_NAME = "browserstack-examples-junit4";
 
     private String methodName;
     private WebDriver driver;
@@ -56,10 +65,10 @@ public class WebDriverProviderRule extends TestWatcher {
         this.webDriverConfiguration = webDriverConfiguration;
         switch (webDriverConfiguration.getDriverType()) {
             case localDriver:
-                instantiateLocalDriver(platform);
+                this.driver = createLocalWebDriver(platform);
                 break;
             case remoteDriver:
-                instantiateRemoteDriver(webDriverConfiguration, platform);
+                this.driver = createRemoteWebDriver(webDriverConfiguration, platform);
         }
         return driver;
     }
@@ -67,7 +76,8 @@ public class WebDriverProviderRule extends TestWatcher {
     /**
      * Instantiates Local Driver for different browser types
      */
-    private void instantiateLocalDriver(Platform platform) {
+    private WebDriver createLocalWebDriver(Platform platform) {
+        WebDriver webDriver = null;
         switch (BrowserType.valueOf(platform.getName())) {
             case chrome:
                 System.setProperty(WEBDRIVER_CHROME_DRIVER, Paths.get(platform.getDriverPath()).toString());
@@ -75,7 +85,7 @@ public class WebDriverProviderRule extends TestWatcher {
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(chromeOptions::setCapability);
                 }
-                this.driver = new ChromeDriver(chromeOptions);
+                webDriver = new ChromeDriver(chromeOptions);
                 break;
             case firefox:
                 System.setProperty(WEBDRIVER_GECKO_DRIVER, Paths.get(platform.getDriverPath()).toString());
@@ -83,7 +93,7 @@ public class WebDriverProviderRule extends TestWatcher {
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(firefoxOptions::setCapability);
                 }
-                this.driver = new FirefoxDriver(firefoxOptions);
+                webDriver = new FirefoxDriver(firefoxOptions);
                 break;
             case ie:
                 System.setProperty(WEBDRIVER_IE_DRIVER, Paths.get(platform.getDriverPath()).toString());
@@ -91,7 +101,7 @@ public class WebDriverProviderRule extends TestWatcher {
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(internetExplorerOptions::setCapability);
                 }
-                this.driver = new InternetExplorerDriver(internetExplorerOptions);
+                webDriver = new InternetExplorerDriver(internetExplorerOptions);
                 break;
             case edge:
                 System.setProperty(WEBDRIVER_EDGE_DRIVER, Paths.get(platform.getDriverPath()).toString());
@@ -99,33 +109,34 @@ public class WebDriverProviderRule extends TestWatcher {
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(edgeOptions::setCapability);
                 }
-                this.driver = new EdgeDriver(edgeOptions);
+                webDriver = new EdgeDriver(edgeOptions);
                 break;
             case safari:
                 SafariOptions safariOptions = new SafariOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(safariOptions::setCapability);
                 }
-                this.driver = new SafariDriver(safariOptions);
+                webDriver = new SafariDriver(safariOptions);
                 break;
             case opera:
                 OperaOptions operaOptions = new OperaOptions();
                 if (platform.getCapabilities() != null) {
                     platform.getCapabilities().getCapabilityMap().forEach(operaOptions::setCapability);
                 }
-                this.driver = new OperaDriver(operaOptions);
+                webDriver = new OperaDriver(operaOptions);
                 break;
         }
+        return webDriver;
     }
 
     /**
      * Instantiates Remote Driver
      */
-    public void instantiateRemoteDriver(WebDriverConfiguration webDriverConfiguration, Platform platform) throws MalformedURLException {
+    public WebDriver createRemoteWebDriver(WebDriverConfiguration webDriverConfiguration, Platform platform) throws MalformedURLException {
         RemoteDriverConfig remoteDriverConfig = webDriverConfiguration.getRemoteDriverConfig();
         CommonCapabilities commonCapabilities = remoteDriverConfig.getCommonCapabilities();
         DesiredCapabilities platformCapabilities = new DesiredCapabilities();
-        if (StringUtils.isNoneEmpty(platform.getDevice())) {
+        if (StringUtils.isNotEmpty(platform.getDevice())) {
             platformCapabilities.setCapability("device", platform.getDevice());
         }
         platformCapabilities.setCapability("browser", platform.getBrowser());
@@ -134,24 +145,39 @@ public class WebDriverProviderRule extends TestWatcher {
         platformCapabilities.setCapability("os_version", platform.getOsVersion());
         platformCapabilities.setCapability("name", getMethodName());
         platformCapabilities.setCapability("project", commonCapabilities.getProject());
-        platformCapabilities.setCapability("build", commonCapabilities.getBuildPrefix());
+        platformCapabilities.setCapability("build", createBuildName(commonCapabilities.getBuildPrefix()));
+
         if (commonCapabilities.getCapabilities() != null) {
             commonCapabilities.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
         }
+
         if (platform.getCapabilities() != null) {
             platform.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
         }
         String user = remoteDriverConfig.getUser();
-        if (StringUtils.isNoneEmpty(System.getenv("BROWSERSTACK_USERNAME"))) {
-            user = System.getenv("BROWSERSTACK_USERNAME");
+        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
+            user = System.getenv(BROWSERSTACK_USERNAME);
         }
         String accessKey = remoteDriverConfig.getAccessKey();
-        if (StringUtils.isNoneEmpty(System.getenv("BROWSERSTACK_ACCESS_KEY"))) {
-            accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
+            accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
         }
         platformCapabilities.setCapability("browserstack.user", user);
         platformCapabilities.setCapability("browserstack.key", accessKey);
-        this.driver = new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+        return new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+    }
+
+    private String createBuildName(String buildPrefix) {
+        if (StringUtils.isEmpty(buildPrefix)) {
+            buildPrefix = DEFAULT_BUILD_NAME;
+        }
+        String buildName = buildPrefix;
+
+        String buildId = System.getenv(BUILD_ID);
+        if (StringUtils.isNotEmpty(buildId)) {
+            buildName = buildName + "-" + buildId;
+        }
+        return buildName;
     }
 
     /**

@@ -27,6 +27,9 @@ public class Platform {
 
     private String device;
 
+    @JsonProperty("real_mobile")
+    private Boolean realMobile;
+
     private String driverPath;
 
     private Capabilities capabilities;
