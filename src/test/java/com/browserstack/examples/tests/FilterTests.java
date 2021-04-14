@@ -3,9 +3,17 @@ package com.browserstack.examples.tests;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,10 +29,19 @@ public class FilterTests extends AbstractWebDriverTest {
     public void testSelectingAppleFilterDisplaysNoSamsungDevices() throws Exception {
         /* =================== Prepare ================= */
         WebDriver webDriver = this.webDriverProviderRule.getWebDriver(webDriverConfiguration, platform);
+        WebDriverWait wait = new WebDriverWait(webDriver, 5);
+        webDriver.get(webDriverConfiguration.getTestEndpoint());
 
         /* =================== Execute ================= */
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .cssSelector(".filters-available-size:nth-child(2) .checkmark"))).click();
+        wait.until(waitWebDriver -> waitWebDriver.findElements(By.cssSelector(".spinner")).isEmpty());
+        List<WebElement> appleDeviceName = webDriver.findElements(By.cssSelector(".shelf-item__title"));
 
         /* =================== Verify ================= */
+        long samsungDeviceCount = appleDeviceName.stream().filter(e -> e.getText().contains("Galaxy")).count();
+        assertEquals(0, samsungDeviceCount);
     }
 
 
@@ -32,9 +49,18 @@ public class FilterTests extends AbstractWebDriverTest {
     public void testSelectingSamsungFilterDisplaysNoAppleDevices() throws Exception {
         /* =================== Prepare ================= */
         WebDriver webDriver = this.webDriverProviderRule.getWebDriver(webDriverConfiguration, platform);
+        WebDriverWait wait = new WebDriverWait(webDriver, 5);
+        webDriver.get(webDriverConfiguration.getTestEndpoint());
 
         /* =================== Execute ================= */
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .cssSelector(".filters-available-size:nth-child(3) .checkmark"))).click();
+        wait.until(waitWebDriver -> waitWebDriver.findElements(By.cssSelector(".spinner")).isEmpty());
+        List<WebElement> samsungDeviceName = webDriver.findElements(By.cssSelector(".shelf-item__title"));
 
         /* =================== Verify ================= */
+        long appleDeviceCount = samsungDeviceName.stream().filter(e -> e.getText().contains("iPhone")).count();
+        assertEquals(0, appleDeviceCount);
     }
 }
