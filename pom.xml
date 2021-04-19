@@ -17,6 +17,7 @@
         <lombok.version>1.18.12</lombok.version>
         <logback.version>1.2.3</logback.version>
         <capabilities.config.file>capabilities.yml</capabilities.config.file>
+        <included.tests>com/browserstack/examples/**/*.java</included.tests>
         <parallel.count>5</parallel.count>
     </properties>
 
@@ -79,7 +80,7 @@
                 <version>3.0.0-M5</version>
                 <configuration>
                     <includes>
-                        <include>com/browserstack/examples/**/*.java</include>
+                        <include>${included.tests}</include>
                     </includes>
                     <parallel>methods</parallel>
                     <threadCount>${parallel.count}</threadCount>
@@ -98,12 +99,14 @@
             </activation>
             <properties>
                 <capabilities.config.file>capabilities-remotedriver.yml</capabilities.config.file>
+                <included.tests>com/browserstack/examples/**/*.java</included.tests>
             </properties>
         </profile>
         <profile>
             <id>localdriver</id>
             <properties>
                 <capabilities.config.file>capabilities-localdriver.yml</capabilities.config.file>
+                <included.tests>com/browserstack/examples/local/**/*.java</included.tests>
             </properties>
         </profile>
         <profile>

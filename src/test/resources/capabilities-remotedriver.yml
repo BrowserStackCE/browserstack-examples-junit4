@@ -15,8 +15,8 @@ localDriver:
 
 remoteDriver:
   hubUrl: https://hub-cloud.browserstack.com/wd/hub
-  user: BROWSERSTACK_USERNAME
-  accessKey: BROWSERSTACK_ACCESS_KEY
+  user: anirudhakhanna6
+  accessKey: xzU8u48szX9q5bWDz46q
   localTunnel:
     enable: false
     forceLocal: false
