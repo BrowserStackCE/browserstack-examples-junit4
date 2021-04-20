@@ -5,7 +5,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -30,9 +29,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 /**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
+ * Factory class that is responsible for parsing the capability configuration and creating {@link WebDriver} instances.
  */
 public class WebDriverFactory {
 
@@ -50,32 +47,41 @@ public class WebDriverFactory {
     private static final String BUILD_ID = "BUILD_ID";
     private static final String DEFAULT_BUILD_NAME = "browserstack-examples-junit4";
 
-    private static final WebDriverFactory INSTANCE = new WebDriverFactory();
-    private WebDriverConfiguration webDriverConfiguration;
-    private final AtomicBoolean isInitialized = new AtomicBoolean(false);
-    private final String defaultBuildSuffix = String.valueOf(System.currentTimeMillis());
+    private static WebDriverFactory instance;
+    private final WebDriverConfiguration webDriverConfiguration;
+    private final String defaultBuildSuffix;
 
     public static WebDriverFactory getInstance() {
-        if (!INSTANCE.isInitialized.get()) {
-            INSTANCE.init();
+        if (instance == null) {
+            synchronized (WebDriverFactory.class) {
+                if (instance == null) {
+                    instance = new WebDriverFactory();
+                }
+            }
         }
-        return INSTANCE;
+        return instance;
     }
 
-    public void init() {
-        isInitialized.set(true);
+    private WebDriverFactory() {
+        this.defaultBuildSuffix = String.valueOf(System.currentTimeMillis());
+        this.webDriverConfiguration = parseWebDriverConfig();
+        List<Platform> platforms = webDriverConfiguration.getActivePlatforms();
+        LOGGER.debug("Running tests on {} active platforms.", platforms.size());
+    }
+
+    private WebDriverConfiguration parseWebDriverConfig() {
         String capabilitiesConfigFile = System.getProperty(CAPABILITIES_FILE_PROP, DEFAULT_CAPABILITIES_FILE);
         LOGGER.debug("Using capabilities configuration from FILE :: {}", capabilitiesConfigFile);
         URL resourceURL = WebDriverFactory.class.getClassLoader().getResource(capabilitiesConfigFile);
 
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+        WebDriverConfiguration webDriverConfiguration = null;
         try {
-            ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
             webDriverConfiguration = objectMapper.readValue(resourceURL, WebDriverConfiguration.class);
-            List<Platform> platforms = webDriverConfiguration.getActivePlatforms();
-            LOGGER.debug("Running tests on {} active platforms.", platforms.size());
         } catch (IOException ioe) {
-            throw new Error("Unable to parse capabilities file.", ioe);
+            throw new Error("Unable to parse capabilities file " + capabilitiesConfigFile, ioe);
         }
+        return webDriverConfiguration;
     }
 
     public WebDriver createWebDriverForPlatform(Platform platform, String testName) throws MalformedURLException {
