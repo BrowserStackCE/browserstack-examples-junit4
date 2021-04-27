@@ -1,478 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.browserstack</groupId>
-	<artifactId>browserstack-examples-junit4</artifactId>
-	<version>1.0-SNAPSHOT</version>
+    <groupId>com.browserstack</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <artifactId>browserstack-examples-junit4</artifactId>
 
-	<name>browserstack-examples-junit4</name>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <selenium-java.version>3.141.59</selenium-java.version>
+        <jackson.version>2.12.2</jackson.version>
+        <lombok.version>1.18.12</lombok.version>
+        <logback.version>1.2.3</logback.version>
+        <capabilities.config.file>capabilities.yml</capabilities.config.file>
+        <included.tests>com/browserstack/examples/**/*.java</included.tests>
+        <parallel.count>5</parallel.count>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<aspectj.version>1.8.10</aspectj.version>
-		<junit.version>4.13.2</junit.version>
-		<json-simple.version>1.1.1</json-simple.version>
-		<selenium-java.version>3.141.59</selenium-java.version>
-		<browserstack-local-java.version>1.0.6</browserstack-local-java.version>
-		<aspectj.version>1.8.10</aspectj.version>
-		<allure-junit4.version>2.13.8</allure-junit4.version>
-	</properties>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>test</scope>
-			</dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
 
-			<dependency>
-				<groupId>com.googlecode.json-simple</groupId>
-				<artifactId>json-simple</artifactId>
-				<version>${json-simple.version}</version>
-			</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
 
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-java</artifactId>
-				<version>${selenium-java.version}</version>
-			</dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium-java.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
 
-			<dependency>
-				<groupId>com.browserstack</groupId>
-				<artifactId>browserstack-local-java</artifactId>
-				<version>${browserstack-local-java.version}</version>
-			</dependency>
+    </dependencies>
 
-			<dependency>
-				<groupId>io.qameta.allure</groupId>
-				<artifactId>allure-junit4</artifactId>
-				<version>${allure-junit4.version}</version>
-				<scope>test</scope>
-			</dependency>
-
-		</dependencies>
-
-	</dependencyManagement>
-
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-		</dependency>
-
-
-		<dependency>
-			<groupId>com.browserstack</groupId>
-			<artifactId>browserstack-local-java</artifactId>
-		</dependency>
-
-
-		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-junit4</artifactId>
-		</dependency>
-
-	</dependencies>
-
-
-
-	<profiles>
-		<profile>
-			<properties>
-				<on-premise>onPremise</on-premise>
-			</properties>
-			<id>on-prem</id>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>3.0.0-M5</version>
-						<configuration>
-						
-							<parallel>all</parallel>
-         					<threadCount>10</threadCount>
-         					<redirectTestOutputToFile>false</redirectTestOutputToFile>
-							<testFailureIgnore>false</testFailureIgnore>
-							<argLine>
-								-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-							</argLine>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>io.qameta.allure.junit4.AllureJunit4</value>
-								</property>
-							</properties>
-							<systemPropertyVariables>
-								<profileId>on-prem</profileId>
-							</systemPropertyVariables>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.aspectj</groupId>
-								<artifactId>aspectjweaver</artifactId>
-								<version>${aspectj.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>
-
-		</profile>
-		
-		
-		
-		<profile>
-			<properties>
-				<on-prem-suite>on-prem-suite</on-prem-suite>
-			</properties>
-			<id>on-prem-suite</id>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>3.0.0-M5</version>
-						<configuration>
-						<includes>
-            				<include>ImageNotLoading.java</include>
-            				<include>CheckFavouriteItems.java</include>
-							<include>CheckExistingOrders.java</include> 
-							<include>ApplyingFilters.java</include>
-							<include>LowestToHighest.java</include>
-							<include>CheckOffers.java</include>
-							<include>FavouritesEnforcesLoginTest.java</include>
-							<include>LockedUserTest.java</include>
-							<include>EndToEndTest.java</include>					
-       				    </includes>
-						<parallel>all</parallel>
-         				<threadCount>10</threadCount>
-         				<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						
-							<testFailureIgnore>false</testFailureIgnore>
-							<argLine>
-								-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-							</argLine>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>io.qameta.allure.junit4.AllureJunit4</value>
-								</property>
-							</properties>
-							<systemPropertyVariables>
-								<profileId>on-prem-suite</profileId>
-							</systemPropertyVariables>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.aspectj</groupId>
-								<artifactId>aspectjweaver</artifactId>
-								<version>${aspectj.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>	
-	
-		</profile>
-		
-		
-		
-		<profile>
-			<properties>
-				<bstack-single>bstack-single</bstack-single>
-			</properties>
-			<id>bstack-single</id>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>3.0.0-M5</version>
-						<configuration>
-						
-						<parallel>all</parallel>
-         				<threadCount>10</threadCount>
-         				<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						
-							<testFailureIgnore>false</testFailureIgnore>
-							<argLine>
-								-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-							</argLine>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>io.qameta.allure.junit4.AllureJunit4</value>
-								</property>
-							</properties>
-							<systemPropertyVariables>
-								<profileId>bstack-single</profileId>
-							</systemPropertyVariables>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.aspectj</groupId>
-								<artifactId>aspectjweaver</artifactId>
-								<version>${aspectj.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>
-			
-		</profile>	
-		
-		
-		
-		
-		
-		<profile>
-			<properties>
-				<bstack-parallel>bstack-parallel</bstack-parallel>
-			</properties>
-			<id>bstack-parallel</id>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>3.0.0-M5</version>
-						<configuration>
-						<includes>
-            				<include>ImageNotLoading.java</include>
-            				<include>CheckFavouriteItems.java</include>
-							<include>CheckExistingOrders.java</include> 
-							<include>ApplyingFilters.java</include>
-							<include>LowestToHighest.java</include>
-							<include>CheckOffers.java</include>
-							<include>FavouritesEnforcesLoginTest.java</include>
-							<include>LockedUserTest.java</include>
-							<include>EndToEndTest.java</include>					
-       					</includes>
-						<parallel>all</parallel>
-         				<threadCount>10</threadCount>
-         				<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						
-							<testFailureIgnore>false</testFailureIgnore>
-							<argLine>
-								-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-							</argLine>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>io.qameta.allure.junit4.AllureJunit4</value>
-								</property>
-							</properties>
-							<systemPropertyVariables>
-								<profileId>bstack-parallel</profileId>
-							</systemPropertyVariables>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.aspectj</groupId>
-								<artifactId>aspectjweaver</artifactId>
-								<version>${aspectj.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>
-			
-
-		</profile>
-		
-		
-		
-		
-		<profile>
-			<properties>
-				<bstack-local>bstack-local</bstack-local>
-			</properties>
-			<id>bstack-local</id>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>3.0.0-M5</version>
-						<configuration>
-						<parallel>all</parallel>
-         				<threadCount>10</threadCount>
-         				<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						
-							<testFailureIgnore>false</testFailureIgnore>
-							<argLine>
-								-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-							</argLine>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>io.qameta.allure.junit4.AllureJunit4</value>
-								</property>
-							</properties>
-							<systemPropertyVariables>
-								<profileId>bstack-local</profileId>
-							</systemPropertyVariables>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.aspectj</groupId>
-								<artifactId>aspectjweaver</artifactId>
-								<version>${aspectj.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>
-		
-		
-		
-		</profile>
-		
-		
-		
-		
-		
-		<profile>
-			<properties>
-				<bstack-local-parallel>bstack-local-parallel</bstack-local-parallel>
-			</properties>
-			<id>bstack-local-parallel</id>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>3.0.0-M5</version>
-						<configuration>
-						<includes>
-            			 	<include>ImageNotLoading.java</include>
-            				<include>CheckFavouriteItems.java</include>
-							<include>CheckExistingOrders.java</include> 
-							<include>ApplyingFilters.java</include> 
-							<include>LowestToHighest.java</include>
-							<include>CheckOffers.java</include>
-							<include>FavouritesEnforcesLoginTest.java</include>
-							<include>LockedUserTest.java</include>
-							<include>EndToEndTest.java</include>	
-									
-       					</includes>
-						<parallel>all</parallel>
-         				<threadCount>10</threadCount>
-         				<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						
-							<testFailureIgnore>false</testFailureIgnore>
-							<argLine>
-								-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-							</argLine>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>io.qameta.allure.junit4.AllureJunit4</value>
-								</property>
-							</properties>
-							<systemPropertyVariables>
-								<profileId>bstack-local-parallel</profileId>
-							</systemPropertyVariables>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.aspectj</groupId>
-								<artifactId>aspectjweaver</artifactId>
-								<version>${aspectj.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>
-		
-		
-		
-		</profile>
-		
-		
-		
-		
-		
-		
-			<profile>
-			<properties>
-				<docker>docker</docker>
-			</properties>
-			<id>docker</id>
-
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>3.0.0-M5</version>
-						<configuration>
-						<parallel>all</parallel>
-         				<threadCount>10</threadCount>
-         				<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						
-							<testFailureIgnore>false</testFailureIgnore>
-							<argLine>
-								-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-							</argLine>
-							<properties>
-								<property>
-									<name>listener</name>
-									<value>io.qameta.allure.junit4.AllureJunit4</value>
-								</property>
-							</properties>
-							<systemPropertyVariables>
-								<profileId>docker</profileId>
-							</systemPropertyVariables>
-						</configuration>
-						<dependencies>
-							<dependency>
-								<groupId>org.aspectj</groupId>
-								<artifactId>aspectjweaver</artifactId>
-								<version>${aspectj.version}</version>
-							</dependency>
-						</dependencies>
-					</plugin>
-				</plugins>
-			</build>
-		
-		
-		
-		</profile>
-		
-		
-		
-		
-		
-		
-	</profiles>
+    <build>
+        <plugins>
+            <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <includes>
+                        <include>${included.tests}</include>
+                    </includes>
+                    <parallel>methods</parallel>
+                    <threadCount>${parallel.count}</threadCount>
+                    <systemPropertyVariables>
+                        <capabilities.config>${capabilities.config.file}</capabilities.config>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>remotedriver</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <capabilities.config.file>capabilities-remotedriver.yml</capabilities.config.file>
+                <included.tests>com/browserstack/examples/**/*.java</included.tests>
+            </properties>
+        </profile>
+        <profile>
+            <id>localdriver</id>
+            <properties>
+                <capabilities.config.file>capabilities-localdriver.yml</capabilities.config.file>
+                <included.tests>com/browserstack/examples/local/**/*.java</included.tests>
+            </properties>
+        </profile>
+        <profile>
+            <id>remotemobile</id>
+            <properties>
+                <capabilities.config.file>capabilities-remotemobile.yml</capabilities.config.file>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
