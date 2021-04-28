@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Checkout {
 
@@ -23,13 +25,14 @@ public class Checkout {
 	public final static String postalcode = "401105";
 
 	// Creating Constructor
-	public Checkout(WebDriver driver) {
+	public Checkout(WebDriver driver,WebDriverWait wait) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		EnterCheckoutDetails(wait);
 	}
 
-	public void EnterCheckoutDetails() {
-
+	public void EnterCheckoutDetails(WebDriverWait wait) {
+		wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/checkout"));
 		EnterFirstName();
 		EnterLastName();
 		EnterAddress();

@@ -78,6 +78,15 @@ public class Constants {
 	public static String CheckOffersPassReason = "Offers Found";
 	
 	public static String CheckOffersFailReason = "Offers Not Found";
+
+	public static final String LOCATION_SCRIPT_FORMAT = "navigator.geolocation.getCurrentPosition = function(success){\n" +
+			"    var position = { \"coords\":{\"latitude\":\"%s\",\"longitude\":\"%s\"}};\n" +
+			"    success(position);\n" +
+			"}";
+
+	public static final String OFFER_LATITUDE = "1";
+
+	public static final String OFFER_LONGITUDE = "103";
 	
 	//ApplyingFilters
 	public static String ApplyingFiltersassertcondition = "16 Product(s) found.";

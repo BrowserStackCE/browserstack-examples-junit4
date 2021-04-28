@@ -20,7 +20,7 @@ public class Login {
 	public Login(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-
+		login();
 	}
 
 	public void login() {
@@ -54,7 +54,7 @@ public class Login {
 
 	public void ClickSignIn() {
 
-		SignIn.click();
+		SignIn.sendKeys(Keys.RETURN);
 	}
 
 }

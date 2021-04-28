@@ -31,9 +31,11 @@ public class WebDriverConfiguration {
     @JsonProperty("remoteDriver")
     private RemoteDriverConfig remoteDriverConfig;
 
+
     public List<Platform> getActivePlatforms() {
         List<Platform> activePlatforms = Collections.emptyList();
         switch (driverType) {
+            case dockerDriver:
             case remoteDriver:
                 activePlatforms = remoteDriverConfig.getPlatforms();
                 break;
