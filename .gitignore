@@ -31,6 +31,10 @@ buildNumber.properties
 
 # gradle
 build/
+gradlew
+gradlew.bat
+settings.gradle
+gradle/
 
 # Secrets
 service-account.json
