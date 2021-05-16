@@ -1,4 +1,4 @@
-testEndpoint: https://bstackdemo.com/
+testEndpoint: http://localhost:3000
 
 driverType: remoteDriver
 
@@ -18,8 +18,8 @@ remoteDriver:
   user:
   accessKey:
   localTunnel:
-    enable: false
-    forceLocal: false
+    enable: true
+    forceLocal: true
   common_capabilities:
     project:
     buildPrefix: browserstack-examples-junit4
@@ -34,7 +34,5 @@ remoteDriver:
       os_version: '10'
       browser: Chrome
       browser_version: latest-1
-
-
 
 

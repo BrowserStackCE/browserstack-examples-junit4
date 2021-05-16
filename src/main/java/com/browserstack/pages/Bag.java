@@ -27,7 +27,8 @@ public class Bag {
 	}
 
 	public void AddToCart(WebDriverWait wait) {
-		wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/?signin=true"));
+		//wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/?signin=true"));
+		wait.until(ExpectedConditions.urlContains("?signin=true"));
 		wait.until(waitWebDriver -> waitWebDriver.findElements(By.cssSelector(".spinner")).isEmpty());
 		ClickiPhone12();
 		driver.findElement(By.className("float-cart__close-btn")).click();

@@ -23,7 +23,7 @@ public class Confirmation {
 	static WebElement ContinueShoppingButton;
 
 	public void ClickContinueShoppingButton(WebDriverWait wait) {
-		wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/confirmation"));
+		wait.until(ExpectedConditions.urlContains("confirmation"));
 		ContinueShoppingButton.click();
 	}
 

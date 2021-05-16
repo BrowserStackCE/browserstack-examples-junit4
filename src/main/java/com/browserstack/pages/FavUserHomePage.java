@@ -1,5 +1,6 @@
 package com.browserstack.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +23,7 @@ public class FavUserHomePage {
     static WebElement OrderButton;
 
     public void ClickOrderButton(WebDriverWait wait) {
-        wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(OrderButtonLocator)));
         OrderButton.click();
     }
 }

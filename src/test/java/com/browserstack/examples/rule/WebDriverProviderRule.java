@@ -1,10 +1,14 @@
 package com.browserstack.examples.rule;
-
+import ch.qos.logback.core.hook.ShutdownHook;
+import com.browserstack.local.Local;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.net.URL;
+import java.util.HashMap;
+
 import com.browserstack.examples.config.*;
+import com.browserstack.utils.LocalTesting;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
@@ -57,7 +61,7 @@ public class WebDriverProviderRule extends TestWatcher {
         return methodName;
     }
 
-    public WebDriver getWebDriver(WebDriverConfiguration webDriverConfiguration, Platform platform) throws MalformedURLException {
+    public WebDriver getWebDriver(WebDriverConfiguration webDriverConfiguration, Platform platform) throws Exception {
         this.webDriverConfiguration = webDriverConfiguration;
         switch (webDriverConfiguration.getDriverType()) {
             case localDriver:
@@ -65,9 +69,11 @@ public class WebDriverProviderRule extends TestWatcher {
                 break;
             case remoteDriver:
                 this.driver = createRemoteWebDriver(webDriverConfiguration, platform);
+                break;
             case dockerDriver:
                 this.driver = createDockerWebDriver(webDriverConfiguration, platform);
                 driver.manage().window().maximize();
+                break;
         }
         return driver;
     }
@@ -142,10 +148,19 @@ public class WebDriverProviderRule extends TestWatcher {
     /**
      * Instantiates Remote Driver
      */
-    public WebDriver createRemoteWebDriver(WebDriverConfiguration webDriverConfiguration, Platform platform) throws MalformedURLException {
+    public WebDriver createRemoteWebDriver(WebDriverConfiguration webDriverConfiguration, Platform platform) throws MalformedURLException,Exception {
         RemoteDriverConfig remoteDriverConfig = webDriverConfiguration.getRemoteDriverConfig();
         CommonCapabilities commonCapabilities = remoteDriverConfig.getCommonCapabilities();
         DesiredCapabilities platformCapabilities = new DesiredCapabilities();
+        //Experimental
+
+        LocalTunnelConfig localTunnelConfig = remoteDriverConfig.getLocalTunnel();
+        if(localTunnelConfig.getEnable() == true) {
+            platformCapabilities.setCapability("browserstack.local",localTunnelConfig.getEnable());
+            LocalTesting.createInstance(remoteDriverConfig, platformCapabilities);
+        }
+
+
         if (StringUtils.isNotEmpty(platform.getDevice())) {
             platformCapabilities.setCapability("device", platform.getDevice());
         }
@@ -174,7 +189,8 @@ public class WebDriverProviderRule extends TestWatcher {
         }
         platformCapabilities.setCapability("browserstack.user", user);
         platformCapabilities.setCapability("browserstack.key", accessKey);
-        return new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+        RemoteWebDriver driver = new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+        return driver;
     }
 
     private String createBuildName(String buildPrefix) {

@@ -29,7 +29,7 @@ public class HomePage {
 
 	public void ClickSignInButton(WebDriverWait wait) {
 		SignInButton.click();
-		wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/signin"));
+		wait.until(ExpectedConditions.urlContains("signin"));
 	}
 
 	public void AddToCart() {

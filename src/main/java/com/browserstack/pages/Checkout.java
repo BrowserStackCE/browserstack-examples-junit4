@@ -32,7 +32,7 @@ public class Checkout {
 	}
 
 	public void EnterCheckoutDetails(WebDriverWait wait) {
-		wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/checkout"));
+		wait.until(ExpectedConditions.urlContains("checkout"));
 		EnterFirstName();
 		EnterLastName();
 		EnterAddress();

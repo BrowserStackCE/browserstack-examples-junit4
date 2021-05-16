@@ -18,6 +18,9 @@
         <logback.version>1.2.3</logback.version>
         <capabilities.config.file>capabilities.yml</capabilities.config.file>
         <parallel.count>5</parallel.count>
+        <parallel.type>all</parallel.type>
+        <aspectj.version>1.8.10</aspectj.version>
+        <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
     </properties>
 
     <dependencies>
@@ -25,6 +28,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.browserstack</groupId>
+            <artifactId>browserstack-local-java</artifactId>
+            <version>1.0.3</version>
         </dependency>
 
         <dependency>
@@ -63,299 +72,164 @@
             <version>${logback.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit4</artifactId>
+            <version>2.13.8</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
-            <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.0.2</version>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
                     <includes>
-                        <include>com/browserstack/examples/**/*.java</include>
+                        <included.tests>${included.tests}</included.tests>
                     </includes>
-                    <parallel>classes</parallel>
+                    <parallel>${parallel.type}</parallel>
                     <threadCount>${parallel.count}</threadCount>
+                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.junit4.AllureJunit4</value>
+                        </property>
+                    </properties>
                     <systemPropertyVariables>
                         <capabilities.config>${capabilities.config.file}</capabilities.config>
                     </systemPropertyVariables>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
 
-
-
     <profiles>
         <profile>
-            <id>bstack-parallel</id>
-            <build>
-                <plugins>
-                    <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>com/browserstack/examples/**/*.java</include>
-                            </includes>
-                            <parallel>all</parallel>
-                            <threadCount>${parallel.count}</threadCount>
-                            <systemPropertyVariables>
-                                <capabilities.config>${capabilities.config.file}</capabilities.config>
-                                <profileId>bstack-parallel</profileId>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+            <id>docker-parallel</id>
             <properties>
-                <capabilities.config.file>capabilities-remotedriver.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-dockerdriver.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/*.java</included.tests>
+                <parallel.type>all</parallel.type>
             </properties>
         </profile>
 
 
-
         <profile>
-            <id>bstack-single</id>
-            <build>
-                <plugins>
-                    <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>com/browserstack/examples/**/FilterTests.java</include>
-                            </includes>
-                            <parallel>all</parallel>
-                            <threadCount>${parallel.count}</threadCount>
-                            <systemPropertyVariables>
-                                <capabilities.config>${capabilities.config.file}</capabilities.config>
-                                <profileId>bstack-single</profileId>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <id>bstack-parallel</id>
             <properties>
                 <capabilities.config.file>capabilities-bstack-parallel.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/*.java</included.tests>
+                <parallel.type>all</parallel.type>
             </properties>
         </profile>
 
 
         <profile>
             <id>on-prem-suite</id>
-            <build>
-                <plugins>
-                    <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>com/browserstack/examples/**/*.java</include>
-                            </includes>
-                            <parallel>classes</parallel>
-                            <threadCount>${parallel.count}</threadCount>
-                            <systemPropertyVariables>
-                                <capabilities.config>${capabilities.config.file}</capabilities.config>
-                                <profileId>on-prem-suite</profileId>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
             <properties>
                 <capabilities.config.file>capabilities-localdriver.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/*.java</included.tests>
+                <parallel.type>classes</parallel.type>
             </properties>
         </profile>
 
+
+        <profile>
+            <id>bstack-single</id>
+            <properties>
+                <capabilities.config.file>capabilities-bstack-parallel.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+                <parallel>classes</parallel>
+            </properties>
+        </profile>
 
 
         <profile>
             <id>on-prem</id>
-            <build>
-                <plugins>
-                    <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>com/browserstack/examples/**/FilterTests.java</include>
-                            </includes>
-                            <parallel>all</parallel>
-                            <threadCount>${parallel.count}</threadCount>
-                            <systemPropertyVariables>
-                                <capabilities.config>${capabilities.config.file}</capabilities.config>
-                                <profileId>on-prem</profileId>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
             <properties>
                 <capabilities.config.file>capabilities-localdriver.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+                <parallel.type>all</parallel.type>
             </properties>
         </profile>
-
 
 
         <profile>
             <id>docker</id>
-            <build>
-                <plugins>
-                    <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>com/browserstack/examples/**/FilterTests.java</include>
-                            </includes>
-                            <parallel>all</parallel>
-                            <threadCount>${parallel.count}</threadCount>
-                            <systemPropertyVariables>
-                                <capabilities.config>${capabilities.config.file}</capabilities.config>
-                                <profileId>docker</profileId>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
             <properties>
                 <capabilities.config.file>capabilities-dockerdriver.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+                <parallel>all</parallel>
             </properties>
         </profile>
-
-
-
-        <profile>
-            <id>docker-parallel</id>
-            <build>
-                <plugins>
-                    <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>com/browserstack/examples/**/*.java</include>
-                            </includes>
-                            <parallel>all</parallel>
-                            <threadCount>${parallel.count}</threadCount>
-                            <systemPropertyVariables>
-                                <capabilities.config>${capabilities.config.file}</capabilities.config>
-                                <profileId>docker-parallel</profileId>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-            <properties>
-                <capabilities.config.file>capabilities-dockerdriver.yml</capabilities.config.file>
-            </properties>
-        </profile>
-
 
 
         <profile>
             <id>bstack-parallel-browsers</id>
-            <build>
-                <plugins>
-                    <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M5</version>
-                        <configuration>
-                            <includes>
-                                <include>com/browserstack/examples/**/*.java</include>
-                            </includes>
-                            <parallel>classes</parallel>
-                            <threadCount>${parallel.count}</threadCount>
-                            <systemPropertyVariables>
-                                <capabilities.config>${capabilities.config.file}</capabilities.config>
-                                <profileId>bstack-parallel-browsers</profileId>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
             <properties>
-                <capabilities.config.file>capabilities-remotedriver.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-bstack-parallel-browsers.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/*.java</included.tests>
+                <parallel.type>classes</parallel.type>
             </properties>
         </profile>
-
-
-
-
-
 
 
         <profile>
-            <id>localdriver</id>
+            <id>bstack-local</id>
             <properties>
-                <capabilities.config.file>capabilities-localdriver.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-bstack-local.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+                <parallel.type>classes</parallel.type>
             </properties>
         </profile>
+
+
         <profile>
-            <id>remotemobile</id>
+            <id>bstack-local-parallel-browsers</id>
             <properties>
-                <capabilities.config.file>capabilities-remotemobile.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-bstack-local-parallel-browsers.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/*.java</included.tests>
+                <parallel.type>classes</parallel.type>
             </properties>
         </profile>
+
+
+        <profile>
+            <id>bstack-local-parallel</id>
+            <properties>
+                <capabilities.config.file>capabilities-bstack-local-parallel.yml</capabilities.config.file>
+                <included.tests>com/browserstack/suites/**/*.java</included.tests>
+                <parallel.type>all</parallel.type>
+            </properties>
+        </profile>
+
     </profiles>
 </project>

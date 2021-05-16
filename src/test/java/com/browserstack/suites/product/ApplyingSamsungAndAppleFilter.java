@@ -1,27 +1,15 @@
-package com.browserstack.examples.tests;
+package com.browserstack.suites.product;
 
-import com.browserstack.utils.CommonSteps;
-import com.browserstack.utils.Constants;
+import com.browserstack.examples.tests.AbstractWebDriverTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.JavascriptExecutor;
-import com.browserstack.pages.*;
-
-import java.util.List;
-
-import static org.junit.Assert.*;
-import static org.openqa.selenium.Keys.ENTER;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,7 +26,7 @@ public class ApplyingSamsungAndAppleFilter extends AbstractWebDriverTest {
 
         /* =================== Prepare ================= */
         WebDriver webDriver = this.webDriverProviderRule.getWebDriver(webDriverConfiguration, platform);
-        WebDriverWait wait = new WebDriverWait(webDriver, 5);
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
         webDriver.get(webDriverConfiguration.getTestEndpoint());
 
         /* =================== Execute ================= */

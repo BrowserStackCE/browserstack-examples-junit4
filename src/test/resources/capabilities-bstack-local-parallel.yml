@@ -1,4 +1,4 @@
-testEndpoint: https://bstackdemo.com/
+testEndpoint: http://localhost:3000
 
 driverType: remoteDriver
 
@@ -16,10 +16,10 @@ localDriver:
 remoteDriver:
   hubUrl: https://hub-cloud.browserstack.com/wd/hub
   user:
-  accessKey:
+  accessKey: 
   localTunnel:
-    enable: false
-    forceLocal: false
+    enable: true
+    forceLocal: true
   common_capabilities:
     project:
     buildPrefix: browserstack-examples-junit4
