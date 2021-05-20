@@ -30,7 +30,7 @@ public class LockedUserTest extends AbstractWebDriverTest {
     public void lockedUserTest() throws Exception {
 
         /* =================== Prepare ================= */
-        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(webDriverConfiguration, platform);
+        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
         webDriver.get(webDriverConfiguration.getTestEndpoint());
 

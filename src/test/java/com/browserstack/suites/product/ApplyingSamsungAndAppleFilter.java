@@ -25,7 +25,7 @@ public class ApplyingSamsungAndAppleFilter extends AbstractWebDriverTest {
     public void ApplyingAppleAndSamsungFilters() throws Exception {
 
         /* =================== Prepare ================= */
-        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(webDriverConfiguration, platform);
+        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
         webDriver.get(webDriverConfiguration.getTestEndpoint());
 

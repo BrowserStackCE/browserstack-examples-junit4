@@ -28,7 +28,7 @@ public class EndToEndTest extends AbstractWebDriverTest {
     public void endToEndTest() throws Exception {
 
         /* =================== Prepare ================= */
-        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(webDriverConfiguration, platform);
+        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
         webDriver.get(webDriverConfiguration.getTestEndpoint());
 
@@ -41,7 +41,6 @@ public class EndToEndTest extends AbstractWebDriverTest {
        FavUserHomePage favUserHomePage = new FavUserHomePage(webDriver ,wait);
 
         /* =================== Verify ================= */
-        //wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/orders"));
         wait.until(ExpectedConditions.urlContains("/orders"));
         wait.until(ExpectedConditions
                .visibilityOfElementLocated(By

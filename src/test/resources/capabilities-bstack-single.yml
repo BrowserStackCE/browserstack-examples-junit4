@@ -1,4 +1,4 @@
-testEndpoint: https://bstackdemo.com
+testEndpoint: https://bstackdemo.com/
 
 driverType: remoteDriver
 
@@ -15,8 +15,8 @@ localDriver:
 
 remoteDriver:
   hubUrl: https://hub-cloud.browserstack.com/wd/hub
-  user:
-  accessKey:
+  user: BROWSERSTACK_USERNAME
+  accessKey: BROWSERSTACK_ACCESSKEY
   localTunnel:
     enable: false
     forceLocal: false
@@ -27,12 +27,14 @@ remoteDriver:
       browserstack.debug: true
       browserstack.networkLogs: true
       browserstack.console: debug
+      browserstack.ie.arch: x32
   platforms:
-    - name: iphone12
-      os_version: 14
-      device: iPhone 12 Pro
-      real_mobile: true
-    - name: galaxy_s20
-      os_version: '10.0'
-      device: Samsung Galaxy S20
-      real_mobile: true
+    - name: Win10_Chrome_latest
+      os: Windows
+      os_version: '10'
+      browser: Chrome
+      browser_version: latest-1
+
+
+
+

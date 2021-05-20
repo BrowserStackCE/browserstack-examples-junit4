@@ -135,7 +135,7 @@
         <profile>
             <id>docker-parallel</id>
             <properties>
-                <capabilities.config.file>capabilities-dockerdriver.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-docker-parallel.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/*.java</included.tests>
                 <parallel.type>all</parallel.type>
             </properties>
@@ -165,7 +165,7 @@
         <profile>
             <id>bstack-single</id>
             <properties>
-                <capabilities.config.file>capabilities-bstack-parallel.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-bstack-single.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
                 <parallel>classes</parallel>
             </properties>
@@ -175,7 +175,7 @@
         <profile>
             <id>on-prem</id>
             <properties>
-                <capabilities.config.file>capabilities-localdriver.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-on-prem.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
                 <parallel.type>all</parallel.type>
             </properties>
@@ -185,7 +185,7 @@
         <profile>
             <id>docker</id>
             <properties>
-                <capabilities.config.file>capabilities-dockerdriver.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-docker.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
                 <parallel>all</parallel>
             </properties>
