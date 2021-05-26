@@ -28,7 +28,7 @@ public class CheckOffers extends AbstractWebDriverTest {
         /* =================== Prepare ================= */
         WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        webDriver.get(webDriverConfiguration.getTestEndpoint());
+        webDriver.get(getTestEndpoint());
 
         /* =================== Execute ================= */
         String locationScript = String.format(Constants.LOCATION_SCRIPT_FORMAT, Constants.OFFER_LATITUDE, Constants.OFFER_LONGITUDE);

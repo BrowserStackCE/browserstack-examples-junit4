@@ -24,36 +24,31 @@ public class Login {
 	}
 
 	public void login() {
-		EnterID();
-		EnterPassword();
-		ClickSignIn();
+		enterID();
+		enterPassword();
+		clickSignIn();
 	}
 
 	@FindBy(id = IDLocator)
 	static WebElement ID;
 
-	public void EnterID() {
-
+	public void enterID() {
 		ID.sendKeys(id);
-
 		ID.sendKeys(Keys.ENTER);
 	}
 
 	@FindBy(id = PasswordLocator)
 	static WebElement Password;
 
-	public void EnterPassword() {
-
+	public void enterPassword() {
 		Password.sendKeys(password);
-
 		Password.sendKeys(Keys.ENTER);
 	}
 
 	@FindBy(id = SignInButtonLocator)
 	static WebElement SignIn;
 
-	public void ClickSignIn() {
-
+	public void clickSignIn() {
 		SignIn.sendKeys(Keys.RETURN);
 	}
 

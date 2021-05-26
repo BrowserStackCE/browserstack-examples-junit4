@@ -1,6 +1,6 @@
 testEndpoint: https://bstackdemo.com/
 
-driverType: dockerDriver
+driverType: onPremGridDriver
 
 remoteDriver:
   hubUrl: http://localhost:4444/wd/hub

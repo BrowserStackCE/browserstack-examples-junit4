@@ -24,7 +24,6 @@ public class Checkout {
 	public final static String state = "New York";
 	public final static String postalcode = "401105";
 
-	// Creating Constructor
 	public Checkout(WebDriver driver,WebDriverWait wait) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -33,60 +32,54 @@ public class Checkout {
 
 	public void EnterCheckoutDetails(WebDriverWait wait) {
 		wait.until(ExpectedConditions.urlContains("checkout"));
-		EnterFirstName();
-		EnterLastName();
-		EnterAddress();
-		EnterState();
-		EnterPostalCode();
-		ClickSubmit();
+		enterFirstName();
+		enterLastName();
+		enterAddress();
+		enterState();
+		enterPostalCode();
+		clickSubmit();
 
 	}
 
 	@FindBy(id = FirstNameSelector)
 	static WebElement FirstName;
 
-	public void EnterFirstName() {
-
+	public void enterFirstName() {
 		FirstName.sendKeys(firstname);
 	}
 
 	@FindBy(id = LastNameSelector)
 	static WebElement LastName;
 
-	public void EnterLastName() {
-
+	public void enterLastName() {
 		LastName.sendKeys(lastname);
 	}
 
 	@FindBy(id = AddressSelector)
 	static WebElement Address;
 
-	public void EnterAddress() {
-
+	public void enterAddress() {
 		Address.sendKeys(address);
 	}
 
 	@FindBy(id = StateSelector)
 	static WebElement State;
 
-	public void EnterState() {
-
+	public void enterState() {
 		State.sendKeys(state);
 	}
 
 	@FindBy(id = PostalCodeSelector)
 	static WebElement PostalCode;
 
-	public void EnterPostalCode() {
-
+	public void enterPostalCode() {
 		PostalCode.sendKeys(postalcode);
 	}
 
 	@FindBy(id = SubmitSelector)
 	static WebElement Submit;
 
-	public void ClickSubmit() {
-
+	public void clickSubmit() {
 		Submit.click();
 	}
 

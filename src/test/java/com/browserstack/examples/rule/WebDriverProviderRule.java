@@ -3,7 +3,6 @@ package com.browserstack.examples.rule;
 import java.net.MalformedURLException;
 
 import com.browserstack.examples.config.DriverType;
-import com.browserstack.examples.config.WebDriverConfiguration;
 import lombok.SneakyThrows;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
@@ -26,19 +25,17 @@ public class WebDriverProviderRule extends TestWatcher {
     private String methodName;
     private WebDriver driver;
     private final WebDriverFactory webDriverFactory;
-    private WebDriverConfiguration webDriverConfiguration;
 
     public WebDriverProviderRule() {
         this.webDriverFactory = WebDriverFactory.getInstance();
-        this.webDriverConfiguration = webDriverFactory.webDriverConfiguration;
     }
 
     /**
      * @return the name of the currently-running test method
      */
-    public String getMethodName() {
-        return methodName;
-    }
+   //public String getMethodName() {
+    //  return methodName;
+    //}
 
     @SneakyThrows
     public WebDriver getWebDriver(Platform platform) throws MalformedURLException {
@@ -51,7 +48,7 @@ public class WebDriverProviderRule extends TestWatcher {
      */
     protected void succeeded(Description description) {
         LOGGER.info("Succeeded Test :: {} WebDriver Session :: {}", description.getDisplayName(), this.driver);
-        if (webDriverConfiguration.getDriverType() == DriverType.remoteDriver) {
+        if(webDriverFactory.getDriverType() == DriverType.remoteDriver){
             ((JavascriptExecutor) driver).executeScript(String.format(TEST_STATUS_SCRIPT, "passed", "Test Passed"));
         }
     }
@@ -61,10 +58,11 @@ public class WebDriverProviderRule extends TestWatcher {
      */
     protected void failed(Throwable e, Description description) {
         LOGGER.info("Failed Test :: {} WebDriver Session :: {}", description.getDisplayName(), this.driver, e);
-        if (webDriverConfiguration.getDriverType() == DriverType.remoteDriver) {
+        if(webDriverFactory.getDriverType() == DriverType.remoteDriver){
             ((JavascriptExecutor) driver).executeScript(String.format(TEST_STATUS_SCRIPT, "failed", e.getMessage()));
         }
     }
+
 
     @Override
     protected void starting(Description d) {

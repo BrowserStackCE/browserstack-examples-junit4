@@ -22,12 +22,12 @@ public class ApplyingSamsungAndAppleFilter extends AbstractWebDriverTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplyingSamsungAndAppleFilter.class);
 
     @Test
-    public void ApplyingAppleAndSamsungFilters() throws Exception {
+    public void applyingAppleAndSamsungFilters() throws Exception {
 
         /* =================== Prepare ================= */
         WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        webDriver.get(webDriverConfiguration.getTestEndpoint());
+        webDriver.get(getTestEndpoint());
 
         /* =================== Execute ================= */
         int initialProductCount = webDriver.findElements(By.className("shelf-item")).size();

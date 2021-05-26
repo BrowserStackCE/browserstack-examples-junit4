@@ -25,7 +25,7 @@ public class SortLowestToHighest extends AbstractWebDriverTest {
         /* =================== Prepare ================= */
         WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, 20);
-        webDriver.get(webDriverConfiguration.getTestEndpoint());
+        webDriver.get(getTestEndpoint());
 
         /* =================== Execute ================= */
         wait.until(ExpectedConditions

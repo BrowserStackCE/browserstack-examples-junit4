@@ -5,7 +5,7 @@ driverType: localDriver
 localDriver:
   platforms:
     - name: chrome
-      driverPath: /Users/bhagyesh/Downloads/Driver/chromedriver
+      driverPath: /Users/bhagyesh/Desktop/ChromeDriver/chromedriver
       capabilities:
       #    -
 #    - name: safari

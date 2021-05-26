@@ -155,7 +155,7 @@
         <profile>
             <id>on-prem-suite</id>
             <properties>
-                <capabilities.config.file>capabilities-localdriver.yml</capabilities.config.file>
+                <capabilities.config.file>capabilities-on-prem-suite.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/*.java</included.tests>
                 <parallel.type>classes</parallel.type>
             </properties>

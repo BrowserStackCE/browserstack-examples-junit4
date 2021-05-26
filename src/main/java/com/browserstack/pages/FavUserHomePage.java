@@ -16,13 +16,13 @@ public class FavUserHomePage {
     public FavUserHomePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        ClickOrderButton(wait);
+        clickOrderButton(wait);
     }
 
     @FindBy(id = OrderButtonLocator)
     static WebElement OrderButton;
 
-    public void ClickOrderButton(WebDriverWait wait) {
+    public void clickOrderButton(WebDriverWait wait) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(OrderButtonLocator)));
         OrderButton.click();
     }

@@ -17,21 +17,21 @@ public class LocalTesting extends Thread {
 
     static Local bsLocal = new Local();
 
-    public LocalTesting(RemoteDriverConfig remoteDriverConfig, DesiredCapabilities platformCapabilities) throws Exception {
+   public LocalTesting(RemoteDriverConfig remoteDriverConfig) throws Exception {
 
-        LocalTunnelConfig localTunnelConfig = remoteDriverConfig.getLocalTunnel();
            BINARY_SEMAPHORE.acquire();
                 if (!bsLocal.isRunning()) {
                     HashMap<String, String> bsLocalArgs = new HashMap<String, String>();
-                    bsLocalArgs.put("key", "bQc9V5scoYwsAqxRnUvc");
+                    bsLocalArgs.put("key", remoteDriverConfig.getAccessKey());
                     bsLocal.start(bsLocalArgs);
                 }
             BINARY_SEMAPHORE.release();
+
     }
 
 
     public static void createInstance(RemoteDriverConfig remoteDriverConfig, DesiredCapabilities platformCapabilities) throws Exception {
-        instance = new LocalTesting(remoteDriverConfig,platformCapabilities);
+        instance = new LocalTesting(remoteDriverConfig);
         Runtime.getRuntime().addShutdownHook(instance);
     }
 

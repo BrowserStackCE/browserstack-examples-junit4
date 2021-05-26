@@ -34,7 +34,7 @@ public class WebDriverConfiguration {
     public List<Platform> getActivePlatforms() {
         List<Platform> activePlatforms = Collections.emptyList();
         switch (driverType) {
-            case dockerDriver:
+            case onPremGridDriver:
             case remoteDriver:
                 activePlatforms = remoteDriverConfig.getPlatforms();
                 break;

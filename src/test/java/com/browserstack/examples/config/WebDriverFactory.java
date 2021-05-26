@@ -6,6 +6,7 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.List;
 import com.browserstack.utils.LocalTesting;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -46,10 +47,10 @@ public class WebDriverFactory {
     private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
     private static final String BUILD_ID = "BUILD_ID";
     private static final String DEFAULT_BUILD_NAME = "browserstack-examples-junit4";
-
     private static WebDriverFactory instance;
-    public final WebDriverConfiguration webDriverConfiguration;
+    private final WebDriverConfiguration webDriverConfiguration;
     private final String defaultBuildSuffix;
+
 
     public static WebDriverFactory getInstance() {
         if (instance == null) {
@@ -92,8 +93,8 @@ public class WebDriverFactory {
             case remoteDriver:
                 webDriver = createRemoteWebDriver(platform, testName);
                 break;
-            case dockerDriver:
-                webDriver = createDockerWebDriver(platform, testName);
+            case onPremGridDriver:
+                webDriver = createOnPremGridDriver(platform, testName);
                 webDriver.manage().window().maximize();
                 break;
         }
@@ -161,7 +162,7 @@ public class WebDriverFactory {
     }
 
 
-    public WebDriver createDockerWebDriver(Platform platform, String testName) throws MalformedURLException {
+    public WebDriver createOnPremGridDriver(Platform platform, String testName) throws MalformedURLException {
         RemoteDriverConfig remoteDriverConfig = webDriverConfiguration.getRemoteDriverConfig();
         DesiredCapabilities platformCapabilities = new DesiredCapabilities();
         platformCapabilities.setBrowserName(platform.getBrowser());
@@ -190,7 +191,8 @@ public class WebDriverFactory {
         platformCapabilities.setCapability("os_version", platform.getOsVersion());
         platformCapabilities.setCapability("name", testName);
         platformCapabilities.setCapability("project", commonCapabilities.getProject());
-        platformCapabilities.setCapability("build", commonCapabilities.getBuildPrefix());
+        //platformCapabilities.setCapability("build", commonCapabilities.getBuildPrefix());
+        platformCapabilities.setCapability("build", createBuildName(commonCapabilities.getBuildPrefix()));
 
         if (commonCapabilities.getCapabilities() != null) {
             commonCapabilities.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
@@ -229,6 +231,12 @@ public class WebDriverFactory {
             buildSuffix = System.getenv(BUILD_ID);
         }
         return buildName + "-" + buildSuffix;
+    }
+
+
+
+    public DriverType getDriverType() {
+        return webDriverConfiguration.getDriverType();
     }
 
 }

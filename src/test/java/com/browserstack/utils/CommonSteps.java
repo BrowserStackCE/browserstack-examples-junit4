@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 public class CommonSteps {
 
-
+	/*
 	public static boolean isConfirmationMessageDisplayed(WebDriver driver)
 	{
 
@@ -25,9 +25,13 @@ public class CommonSteps {
 	}
 
 
+
+
 	 public static int productCount(WebDriver driver){
 	        return driver.findElements(By.className("shelf-item")).size();
 	    }
+
+	 */
 
 
 	 public static int findCostByIndex(WebDriver driver,int index){
@@ -49,6 +53,7 @@ public class CommonSteps {
 
 
 
+		/*
 	 public static int orderCount(WebDriver driver){
 	        return driver.findElements(By.className("a-box-group")).size();
 	 }
@@ -57,6 +62,8 @@ public class CommonSteps {
 	 public static int favouriteCount(WebDriver driver){
 	       return driver.findElements(By.className("shelf-item")).size();
 	    }
+
+		 */
 
 
 }

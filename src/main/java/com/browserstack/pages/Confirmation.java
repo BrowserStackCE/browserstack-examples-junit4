@@ -16,13 +16,13 @@ public class Confirmation {
 	public Confirmation(WebDriver driver,WebDriverWait wait) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		ClickContinueShoppingButton(wait);
+		clickContinueShoppingButton(wait);
 	}
 
 	@FindBy(css = ContinueShoppingSelector)
 	static WebElement ContinueShoppingButton;
 
-	public void ClickContinueShoppingButton(WebDriverWait wait) {
+	public void clickContinueShoppingButton(WebDriverWait wait) {
 		wait.until(ExpectedConditions.urlContains("confirmation"));
 		ContinueShoppingButton.click();
 	}

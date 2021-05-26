@@ -23,49 +23,45 @@ public class Bag {
 	public Bag(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		AddToCart(wait);
+		addToCart(wait);
 	}
 
-	public void AddToCart(WebDriverWait wait) {
-		//wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/?signin=true"));
+	public void addToCart(WebDriverWait wait) {
 		wait.until(ExpectedConditions.urlContains("?signin=true"));
 		wait.until(waitWebDriver -> waitWebDriver.findElements(By.cssSelector(".spinner")).isEmpty());
-		ClickiPhone12();
+		clickiPhone12();
 		driver.findElement(By.className("float-cart__close-btn")).click();
-		ClickiPhone12Mini();
+		clickiPhone12Mini();
 		driver.findElement(By.className("float-cart__close-btn")).click();
-		ClickiPhone12ProMax();
-		ClickCheckoutButton();
+		clickiPhone12ProMax();
+		clickCheckoutButton();
 	}
 
 	@FindBy(css = iPhone12Locator)
 	static WebElement iPhone12;
 
-	public void ClickiPhone12() {
+	public void clickiPhone12() {
 		iPhone12.click();
 	}
 
 	@FindBy(css = iPhone12MiniLocator)
 	static WebElement iPhone12Mini;
 
-	public void ClickiPhone12Mini() {
-
+	public void clickiPhone12Mini() {
 		iPhone12Mini.click();
 	}
 
 	@FindBy(css = iPhone12ProMaxLocator)
 	static WebElement iPhone12ProMax;
 
-	public void ClickiPhone12ProMax() {
-
+	public void clickiPhone12ProMax() {
 		iPhone12ProMax.click();
 	}
-
 
 	@FindBy(css = checkoutselector)
 	static WebElement checkoutbutton;
 
-	public void ClickCheckoutButton() {
+	public void clickCheckoutButton() {
 		checkoutbutton.click();
 
 	}

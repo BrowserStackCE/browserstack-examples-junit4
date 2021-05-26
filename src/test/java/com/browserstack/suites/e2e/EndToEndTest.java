@@ -1,5 +1,6 @@
 package com.browserstack.suites.e2e;
 
+import com.browserstack.examples.config.WebDriverFactory;
 import com.browserstack.examples.tests.AbstractWebDriverTest;
 import com.browserstack.pages.*;
 import org.junit.Test;
@@ -30,7 +31,8 @@ public class EndToEndTest extends AbstractWebDriverTest {
         /* =================== Prepare ================= */
         WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        webDriver.get(webDriverConfiguration.getTestEndpoint());
+        webDriver.get(getTestEndpoint());
+
 
         /* =================== Execute ================= */
        HomePage homepage = new HomePage(webDriver, wait);

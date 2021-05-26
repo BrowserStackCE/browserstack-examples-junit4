@@ -10,7 +10,7 @@ services:
       - SE_EVENT_BUS_HOST=selenium-hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-      - SCREEN_WIDTH=3000
+      - SCREEN_WIDTH=3200
       - SCREEN_HEIGHT=2400
     links:
       - selenium-hub:hub
