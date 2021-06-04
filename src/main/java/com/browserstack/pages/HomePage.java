@@ -12,7 +12,7 @@ public class HomePage {
 
 	WebDriver driver;
 
-	public final static String SignInSelector = "signin";
+	public final static String SIGNINLOCATOR = "signin";
 
 	public HomePage(WebDriver driver,WebDriverWait wait) {
 		this.driver = driver;
@@ -20,7 +20,7 @@ public class HomePage {
 		clickSignInButton(wait);
 	}
 
-	@FindBy(id = SignInSelector)
+	@FindBy(id = SIGNINLOCATOR)
 	static WebElement SignInButton;
 
 	public void clickSignInButton(WebDriverWait wait) {

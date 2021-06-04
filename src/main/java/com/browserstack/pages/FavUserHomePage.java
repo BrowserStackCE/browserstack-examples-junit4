@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class FavUserHomePage {
 
     WebDriver driver;
-    public final static String OrderButtonLocator = "orders";
+    public final static String ORDERBUTTONLOCATOR = "orders";
 
     public FavUserHomePage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
@@ -19,11 +19,11 @@ public class FavUserHomePage {
         clickOrderButton(wait);
     }
 
-    @FindBy(id = OrderButtonLocator)
+    @FindBy(id = ORDERBUTTONLOCATOR)
     static WebElement OrderButton;
 
     public void clickOrderButton(WebDriverWait wait) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(OrderButtonLocator)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ORDERBUTTONLOCATOR)));
         OrderButton.click();
     }
 }

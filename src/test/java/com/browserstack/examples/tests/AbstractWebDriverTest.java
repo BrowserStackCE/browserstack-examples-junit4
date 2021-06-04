@@ -1,10 +1,7 @@
 package com.browserstack.examples.tests;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.browserstack.examples.config.WebDriverFactory;
 import org.junit.Rule;
 import org.junit.runners.Parameterized;
@@ -12,10 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.browserstack.examples.config.Platform;
-import com.browserstack.examples.config.WebDriverConfiguration;
 import com.browserstack.examples.rule.WebDriverProviderRule;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 /**
  * Created with IntelliJ IDEA.

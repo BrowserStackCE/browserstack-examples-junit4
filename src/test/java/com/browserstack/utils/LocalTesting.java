@@ -1,12 +1,9 @@
 package com.browserstack.utils;
 
-import com.browserstack.examples.config.LocalTunnelConfig;
 import com.browserstack.examples.config.RemoteDriverConfig;
 import com.browserstack.local.Local;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.Semaphore;
 
 public class LocalTesting extends Thread {
@@ -17,7 +14,7 @@ public class LocalTesting extends Thread {
 
     static Local bsLocal = new Local();
 
-   public LocalTesting(RemoteDriverConfig remoteDriverConfig) throws Exception {
+    public LocalTesting(RemoteDriverConfig remoteDriverConfig) throws Exception {
 
            BINARY_SEMAPHORE.acquire();
                 if (!bsLocal.isRunning()) {

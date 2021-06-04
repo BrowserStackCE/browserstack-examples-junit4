@@ -12,12 +12,10 @@ public class Bag {
 
 	WebDriver driver;
 
-	public final static String checkoutselector = "#__next > div > div > div.float-cart.float-cart--open > div.float-cart__content > div.float-cart__footer > div.buy-btn";
-	public final static String SignInSelector = "signin";
-	public final static String iPhone12Locator = "#\\31  > div.shelf-item__buy-btn";
-	public final static String iPhone12MiniLocator = "#\\32  > div.shelf-item__buy-btn";
-	public final static String iPhone12ProMaxLocator = "#\\33  > div.shelf-item__buy-btn";
-	public final static String OrderButtonLocator = "orders";
+	public final static String CHECKOUTLOCATOR = "#__next > div > div > div.float-cart.float-cart--open > div.float-cart__content > div.float-cart__footer > div.buy-btn";
+	public final static String IPHONE12LOCATOR = "#\\31  > div.shelf-item__buy-btn";
+	public final static String IPHONE12MINILOCATOR = "#\\32  > div.shelf-item__buy-btn";
+	public final static String IPHONE12PROMAXLOCATOR = "#\\33  > div.shelf-item__buy-btn";
 
 
 	public Bag(WebDriver driver, WebDriverWait wait) {
@@ -37,28 +35,28 @@ public class Bag {
 		clickCheckoutButton();
 	}
 
-	@FindBy(css = iPhone12Locator)
+	@FindBy(css = IPHONE12LOCATOR)
 	static WebElement iPhone12;
 
 	public void clickiPhone12() {
 		iPhone12.click();
 	}
 
-	@FindBy(css = iPhone12MiniLocator)
+	@FindBy(css = IPHONE12MINILOCATOR)
 	static WebElement iPhone12Mini;
 
 	public void clickiPhone12Mini() {
 		iPhone12Mini.click();
 	}
 
-	@FindBy(css = iPhone12ProMaxLocator)
+	@FindBy(css = IPHONE12PROMAXLOCATOR)
 	static WebElement iPhone12ProMax;
 
 	public void clickiPhone12ProMax() {
 		iPhone12ProMax.click();
 	}
 
-	@FindBy(css = checkoutselector)
+	@FindBy(css = CHECKOUTLOCATOR)
 	static WebElement checkoutbutton;
 
 	public void clickCheckoutButton() {

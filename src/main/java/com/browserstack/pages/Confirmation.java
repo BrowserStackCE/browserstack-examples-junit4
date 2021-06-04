@@ -11,7 +11,7 @@ public class Confirmation {
 
 	WebDriver driver;
 
-	public final static String ContinueShoppingSelector = "#checkout-app > div > div > div > div > a > button";
+	public final static String CONTINUESHOPPINGLOCATOR = "#checkout-app > div > div > div > div > a > button";
 
 	public Confirmation(WebDriver driver,WebDriverWait wait) {
 		this.driver = driver;
@@ -19,7 +19,7 @@ public class Confirmation {
 		clickContinueShoppingButton(wait);
 	}
 
-	@FindBy(css = ContinueShoppingSelector)
+	@FindBy(css = CONTINUESHOPPINGLOCATOR)
 	static WebElement ContinueShoppingButton;
 
 	public void clickContinueShoppingButton(WebDriverWait wait) {

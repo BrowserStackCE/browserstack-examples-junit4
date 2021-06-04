@@ -11,18 +11,18 @@ public class Checkout {
 
 	WebDriver driver;
 
-	public final static String FirstNameSelector = "firstNameInput";
-	public final static String LastNameSelector = "lastNameInput";
-	public final static String AddressSelector = "addressLine1Input";
-	public final static String StateSelector = "provinceInput";
-	public final static String PostalCodeSelector = "postCodeInput";
-	public final static String SubmitSelector = "checkout-shipping-continue";
+	public final static String FIRSTNAMELOCATOR = "firstNameInput";
+	public final static String LASTNAMELOCATOR = "lastNameInput";
+	public final static String ADDRESSLOCATOR = "addressLine1Input";
+	public final static String STATELOCATOR = "provinceInput";
+	public final static String POSTALCODELOCATOR = "postCodeInput";
+	public final static String SUBMITLOCATOR = "checkout-shipping-continue";
 
-	public final static String firstname = "Bhagyesh";
-	public final static String lastname = "Nanwani";
-	public final static String address = "Street1,New York";
-	public final static String state = "New York";
-	public final static String postalcode = "401105";
+	public final static String FIRSTNAME = "Bhagyesh";
+	public final static String LASTNAME = "Nanwani";
+	public final static String ADDRESS = "Street1,New York";
+	public final static String STATE = "New York";
+	public final static String POSTALCODE = "401105";
 
 	public Checkout(WebDriver driver,WebDriverWait wait) {
 		this.driver = driver;
@@ -41,42 +41,42 @@ public class Checkout {
 
 	}
 
-	@FindBy(id = FirstNameSelector)
+	@FindBy(id = FIRSTNAMELOCATOR)
 	static WebElement FirstName;
 
 	public void enterFirstName() {
-		FirstName.sendKeys(firstname);
+		FirstName.sendKeys(FIRSTNAME);
 	}
 
-	@FindBy(id = LastNameSelector)
+	@FindBy(id = LASTNAMELOCATOR)
 	static WebElement LastName;
 
 	public void enterLastName() {
-		LastName.sendKeys(lastname);
+		LastName.sendKeys(LASTNAME);
 	}
 
-	@FindBy(id = AddressSelector)
+	@FindBy(id = ADDRESSLOCATOR)
 	static WebElement Address;
 
 	public void enterAddress() {
-		Address.sendKeys(address);
+		Address.sendKeys(ADDRESS);
 	}
 
-	@FindBy(id = StateSelector)
+	@FindBy(id = STATELOCATOR)
 	static WebElement State;
 
 	public void enterState() {
-		State.sendKeys(state);
+		State.sendKeys(STATE);
 	}
 
-	@FindBy(id = PostalCodeSelector)
+	@FindBy(id = POSTALCODELOCATOR)
 	static WebElement PostalCode;
 
 	public void enterPostalCode() {
-		PostalCode.sendKeys(postalcode);
+		PostalCode.sendKeys(POSTALCODE);
 	}
 
-	@FindBy(id = SubmitSelector)
+	@FindBy(id = SUBMITLOCATOR)
 	static WebElement Submit;
 
 	public void clickSubmit() {

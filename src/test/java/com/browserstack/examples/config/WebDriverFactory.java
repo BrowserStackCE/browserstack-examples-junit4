@@ -47,9 +47,10 @@ public class WebDriverFactory {
     private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
     private static final String BUILD_ID = "BUILD_ID";
     private static final String DEFAULT_BUILD_NAME = "browserstack-examples-junit4";
+
     private static WebDriverFactory instance;
     private final WebDriverConfiguration webDriverConfiguration;
-    private final String defaultBuildSuffix;
+    private final String DEFAULTBUILDSUFFIX;
 
 
     public static WebDriverFactory getInstance() {
@@ -64,7 +65,7 @@ public class WebDriverFactory {
     }
 
     private WebDriverFactory() {
-        this.defaultBuildSuffix = String.valueOf(System.currentTimeMillis());
+        this.DEFAULTBUILDSUFFIX = String.valueOf(System.currentTimeMillis());
         this.webDriverConfiguration = parseWebDriverConfig();
         List<Platform> platforms = webDriverConfiguration.getActivePlatforms();
         LOGGER.debug("Running tests on {} active platforms.", platforms.size());
@@ -191,7 +192,6 @@ public class WebDriverFactory {
         platformCapabilities.setCapability("os_version", platform.getOsVersion());
         platformCapabilities.setCapability("name", testName);
         platformCapabilities.setCapability("project", commonCapabilities.getProject());
-        //platformCapabilities.setCapability("build", commonCapabilities.getBuildPrefix());
         platformCapabilities.setCapability("build", createBuildName(commonCapabilities.getBuildPrefix()));
 
         if (commonCapabilities.getCapabilities() != null) {
@@ -226,7 +226,7 @@ public class WebDriverFactory {
         }
         String buildName = buildPrefix;
 
-        String buildSuffix = this.defaultBuildSuffix;
+        String buildSuffix = this.DEFAULTBUILDSUFFIX;
         if (StringUtils.isNotEmpty(System.getenv(BUILD_ID))) {
             buildSuffix = System.getenv(BUILD_ID);
         }
