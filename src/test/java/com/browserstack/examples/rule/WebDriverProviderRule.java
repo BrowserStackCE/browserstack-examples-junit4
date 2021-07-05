@@ -2,15 +2,17 @@ package com.browserstack.examples.rule;
 
 import java.net.MalformedURLException;
 
+import com.browserstack.examples.config.DriverType;
+import lombok.SneakyThrows;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.browserstack.examples.config.Platform;
 import com.browserstack.examples.config.WebDriverFactory;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,11 +20,8 @@ import com.browserstack.examples.config.WebDriverFactory;
  * @author Anirudha Khanna
  */
 public class WebDriverProviderRule extends TestWatcher {
-
     private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverProviderRule.class);
-
     private static final String TEST_STATUS_SCRIPT = "browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"%s\", \"reason\": \"%s\"}}";
-
     private String methodName;
     private WebDriver driver;
     private final WebDriverFactory webDriverFactory;
@@ -34,10 +33,11 @@ public class WebDriverProviderRule extends TestWatcher {
     /**
      * @return the name of the currently-running test method
      */
-    public String getMethodName() {
-        return methodName;
-    }
+   //public String getMethodName() {
+    //  return methodName;
+    //}
 
+    @SneakyThrows
     public WebDriver getWebDriver(Platform platform) throws MalformedURLException {
         this.driver = webDriverFactory.createWebDriverForPlatform(platform, this.methodName);
         return driver;
@@ -48,7 +48,9 @@ public class WebDriverProviderRule extends TestWatcher {
      */
     protected void succeeded(Description description) {
         LOGGER.info("Succeeded Test :: {} WebDriver Session :: {}", description.getDisplayName(), this.driver);
-        ((JavascriptExecutor) driver).executeScript(String.format(TEST_STATUS_SCRIPT, "passed", "Test Passed"));
+        if(webDriverFactory.getDriverType() == DriverType.remoteDriver){
+            ((JavascriptExecutor) driver).executeScript(String.format(TEST_STATUS_SCRIPT, "passed", "Test Passed"));
+        }
     }
 
     /**
@@ -56,8 +58,11 @@ public class WebDriverProviderRule extends TestWatcher {
      */
     protected void failed(Throwable e, Description description) {
         LOGGER.info("Failed Test :: {} WebDriver Session :: {}", description.getDisplayName(), this.driver, e);
-        ((JavascriptExecutor) driver).executeScript(String.format(TEST_STATUS_SCRIPT, "failed", e.getMessage()));
+        if(webDriverFactory.getDriverType() == DriverType.remoteDriver){
+            ((JavascriptExecutor) driver).executeScript(String.format(TEST_STATUS_SCRIPT, "failed", e.getMessage()));
+        }
     }
+
 
     @Override
     protected void starting(Description d) {

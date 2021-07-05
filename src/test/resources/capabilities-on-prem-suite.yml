@@ -1,0 +1,18 @@
+testEndpoint: https://bstackdemo.com
+
+driverType: localDriver
+
+localDriver:
+  platforms:
+    - name: chrome
+      driverPath: /Users/bhagyesh/Desktop/ChromeDriver/chromedriver
+      capabilities:
+      #    -
+#    - name: safari
+#      driverPath:
+#      capabilities:
+#      #
+
+
+
+

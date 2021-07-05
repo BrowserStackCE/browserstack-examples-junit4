@@ -20,9 +20,8 @@ import lombok.ToString;
 public class WebDriverConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverConfiguration.class);
-
     private String testEndpoint;
-
+    @JsonProperty("driverType")
     private DriverType driverType;
 
     @JsonProperty("localDriver")
@@ -31,9 +30,11 @@ public class WebDriverConfiguration {
     @JsonProperty("remoteDriver")
     private RemoteDriverConfig remoteDriverConfig;
 
+
     public List<Platform> getActivePlatforms() {
         List<Platform> activePlatforms = Collections.emptyList();
         switch (driverType) {
+            case onPremGridDriver:
             case remoteDriver:
                 activePlatforms = remoteDriverConfig.getPlatforms();
                 break;

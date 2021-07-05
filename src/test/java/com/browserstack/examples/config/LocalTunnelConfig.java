@@ -15,4 +15,5 @@ public class LocalTunnelConfig {
     private Boolean enable;
 
     private Boolean forceLocal;
+
 }

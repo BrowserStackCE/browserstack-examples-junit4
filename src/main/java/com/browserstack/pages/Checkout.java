@@ -4,86 +4,82 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Checkout {
 
 	WebDriver driver;
 
-	public final static String FirstNameSelector = "firstNameInput";
-	public final static String LastNameSelector = "lastNameInput";
-	public final static String AddressSelector = "addressLine1Input";
-	public final static String StateSelector = "provinceInput";
-	public final static String PostalCodeSelector = "postCodeInput";
-	public final static String SubmitSelector = "checkout-shipping-continue";
+	public final static String FIRSTNAMELOCATOR = "firstNameInput";
+	public final static String LASTNAMELOCATOR = "lastNameInput";
+	public final static String ADDRESSLOCATOR = "addressLine1Input";
+	public final static String STATELOCATOR = "provinceInput";
+	public final static String POSTALCODELOCATOR = "postCodeInput";
+	public final static String SUBMITLOCATOR = "checkout-shipping-continue";
 
-	public final static String firstname = "Bhagyesh";
-	public final static String lastname = "Nanwani";
-	public final static String address = "Street1,New York";
-	public final static String state = "New York";
-	public final static String postalcode = "401105";
+	public final static String FIRSTNAME = "Bhagyesh";
+	public final static String LASTNAME = "Nanwani";
+	public final static String ADDRESS = "Street1,New York";
+	public final static String STATE = "New York";
+	public final static String POSTALCODE = "401105";
 
-	// Creating Constructor
-	public Checkout(WebDriver driver) {
+	public Checkout(WebDriver driver,WebDriverWait wait) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		EnterCheckoutDetails(wait);
 	}
 
-	public void EnterCheckoutDetails() {
-
-		EnterFirstName();
-		EnterLastName();
-		EnterAddress();
-		EnterState();
-		EnterPostalCode();
-		ClickSubmit();
+	public void EnterCheckoutDetails(WebDriverWait wait) {
+		wait.until(ExpectedConditions.urlContains("checkout"));
+		enterFirstName();
+		enterLastName();
+		enterAddress();
+		enterState();
+		enterPostalCode();
+		clickSubmit();
 
 	}
 
-	@FindBy(id = FirstNameSelector)
+	@FindBy(id = FIRSTNAMELOCATOR)
 	static WebElement FirstName;
 
-	public void EnterFirstName() {
-
-		FirstName.sendKeys(firstname);
+	public void enterFirstName() {
+		FirstName.sendKeys(FIRSTNAME);
 	}
 
-	@FindBy(id = LastNameSelector)
+	@FindBy(id = LASTNAMELOCATOR)
 	static WebElement LastName;
 
-	public void EnterLastName() {
-
-		LastName.sendKeys(lastname);
+	public void enterLastName() {
+		LastName.sendKeys(LASTNAME);
 	}
 
-	@FindBy(id = AddressSelector)
+	@FindBy(id = ADDRESSLOCATOR)
 	static WebElement Address;
 
-	public void EnterAddress() {
-
-		Address.sendKeys(address);
+	public void enterAddress() {
+		Address.sendKeys(ADDRESS);
 	}
 
-	@FindBy(id = StateSelector)
+	@FindBy(id = STATELOCATOR)
 	static WebElement State;
 
-	public void EnterState() {
-
-		State.sendKeys(state);
+	public void enterState() {
+		State.sendKeys(STATE);
 	}
 
-	@FindBy(id = PostalCodeSelector)
+	@FindBy(id = POSTALCODELOCATOR)
 	static WebElement PostalCode;
 
-	public void EnterPostalCode() {
-
-		PostalCode.sendKeys(postalcode);
+	public void enterPostalCode() {
+		PostalCode.sendKeys(POSTALCODE);
 	}
 
-	@FindBy(id = SubmitSelector)
+	@FindBy(id = SUBMITLOCATOR)
 	static WebElement Submit;
 
-	public void ClickSubmit() {
-
+	public void clickSubmit() {
 		Submit.click();
 	}
 

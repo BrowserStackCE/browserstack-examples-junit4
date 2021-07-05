@@ -10,51 +10,46 @@ public class Login {
 
 	WebDriver driver;
 
-	public final static String IDLocator = "react-select-2-input";
-	public final static String PasswordLocator = "react-select-3-input";
-	public final static String SignInButtonLocator = "login-btn";
+	public final static String IDLOCATOR = "react-select-2-input";
+	public final static String PASSWORDLOCATOR = "react-select-3-input";
+	public final static String SIGNINBUTTONLOCATOR = "login-btn";
 
-	public final static String id = "fav_user";
-	public final static String password = "testingisfun99";
+	public final static String USERID = "fav_user";
+	public final static String PASSWORD = "testingisfun99";
 
 	public Login(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-
+		login();
 	}
 
 	public void login() {
-		EnterID();
-		EnterPassword();
-		ClickSignIn();
+		enterID();
+		enterPassword();
+		clickSignIn();
 	}
 
-	@FindBy(id = IDLocator)
+	@FindBy(id = IDLOCATOR)
 	static WebElement ID;
 
-	public void EnterID() {
-
-		ID.sendKeys(id);
-
+	public void enterID() {
+		ID.sendKeys(USERID);
 		ID.sendKeys(Keys.ENTER);
 	}
 
-	@FindBy(id = PasswordLocator)
+	@FindBy(id = PASSWORDLOCATOR)
 	static WebElement Password;
 
-	public void EnterPassword() {
-
-		Password.sendKeys(password);
-
+	public void enterPassword() {
+		Password.sendKeys(PASSWORD);
 		Password.sendKeys(Keys.ENTER);
 	}
 
-	@FindBy(id = SignInButtonLocator)
+	@FindBy(id = SIGNINBUTTONLOCATOR)
 	static WebElement SignIn;
 
-	public void ClickSignIn() {
-
-		SignIn.click();
+	public void clickSignIn() {
+		SignIn.sendKeys(Keys.RETURN);
 	}
 
 }

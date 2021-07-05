@@ -26,5 +26,6 @@ public class Capabilities {
     public Object capability(String key) {
         return this.capabilityMap.get(key);
     }
+
 }
 

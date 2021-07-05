@@ -5,7 +5,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.List;
-
+import com.browserstack.utils.LocalTesting;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,9 +26,9 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+
 
 /**
  * Factory class that is responsible for parsing the capability configuration and creating {@link WebDriver} instances.
@@ -39,7 +41,6 @@ public class WebDriverFactory {
     private static final String WEBDRIVER_GECKO_DRIVER = "webdriver.gecko.driver";
     private static final String WEBDRIVER_IE_DRIVER = "webdriver.ie.driver";
     private static final String WEBDRIVER_EDGE_DRIVER = "webdriver.edge.driver";
-
     private static final String CAPABILITIES_FILE_PROP = "capabilities.config";
     private static final String DEFAULT_CAPABILITIES_FILE = "capabilities.yml";
     private static final String BROWSERSTACK_USERNAME = "BROWSERSTACK_USERNAME";
@@ -49,7 +50,8 @@ public class WebDriverFactory {
 
     private static WebDriverFactory instance;
     private final WebDriverConfiguration webDriverConfiguration;
-    private final String defaultBuildSuffix;
+    private final String DEFAULTBUILDSUFFIX;
+
 
     public static WebDriverFactory getInstance() {
         if (instance == null) {
@@ -63,7 +65,7 @@ public class WebDriverFactory {
     }
 
     private WebDriverFactory() {
-        this.defaultBuildSuffix = String.valueOf(System.currentTimeMillis());
+        this.DEFAULTBUILDSUFFIX = String.valueOf(System.currentTimeMillis());
         this.webDriverConfiguration = parseWebDriverConfig();
         List<Platform> platforms = webDriverConfiguration.getActivePlatforms();
         LOGGER.debug("Running tests on {} active platforms.", platforms.size());
@@ -73,7 +75,6 @@ public class WebDriverFactory {
         String capabilitiesConfigFile = System.getProperty(CAPABILITIES_FILE_PROP, DEFAULT_CAPABILITIES_FILE);
         LOGGER.debug("Using capabilities configuration from FILE :: {}", capabilitiesConfigFile);
         URL resourceURL = WebDriverFactory.class.getClassLoader().getResource(capabilitiesConfigFile);
-
         ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
         WebDriverConfiguration webDriverConfiguration = null;
         try {
@@ -84,7 +85,7 @@ public class WebDriverFactory {
         return webDriverConfiguration;
     }
 
-    public WebDriver createWebDriverForPlatform(Platform platform, String testName) throws MalformedURLException {
+    public WebDriver createWebDriverForPlatform(Platform platform, String testName) throws Exception {
         WebDriver webDriver = null;
         switch (this.webDriverConfiguration.getDriverType()) {
             case localDriver:
@@ -92,47 +93,17 @@ public class WebDriverFactory {
                 break;
             case remoteDriver:
                 webDriver = createRemoteWebDriver(platform, testName);
+                break;
+            case onPremGridDriver:
+                webDriver = createOnPremGridDriver(platform, testName);
+                webDriver.manage().window().maximize();
+                break;
         }
         return webDriver;
     }
 
     public String getTestEndpoint() {
         return this.webDriverConfiguration.getTestEndpoint();
-    }
-
-    private WebDriver createRemoteWebDriver(Platform platform, String testName) throws MalformedURLException {
-        RemoteDriverConfig remoteDriverConfig = this.webDriverConfiguration.getRemoteDriverConfig();
-        CommonCapabilities commonCapabilities = remoteDriverConfig.getCommonCapabilities();
-        DesiredCapabilities platformCapabilities = new DesiredCapabilities();
-        if (StringUtils.isNotEmpty(platform.getDevice())) {
-            platformCapabilities.setCapability("device", platform.getDevice());
-        }
-        platformCapabilities.setCapability("browser", platform.getBrowser());
-        platformCapabilities.setCapability("browser_version", platform.getBrowserVersion());
-        platformCapabilities.setCapability("os", platform.getOs());
-        platformCapabilities.setCapability("os_version", platform.getOsVersion());
-        platformCapabilities.setCapability("name", testName);
-        platformCapabilities.setCapability("project", commonCapabilities.getProject());
-        platformCapabilities.setCapability("build", createBuildName(commonCapabilities.getBuildPrefix()));
-
-        if (commonCapabilities.getCapabilities() != null) {
-            commonCapabilities.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
-        }
-
-        if (platform.getCapabilities() != null) {
-            platform.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
-        }
-        String user = remoteDriverConfig.getUser();
-        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
-            user = System.getenv(BROWSERSTACK_USERNAME);
-        }
-        String accessKey = remoteDriverConfig.getAccessKey();
-        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
-            accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
-        }
-        platformCapabilities.setCapability("browserstack.user", user);
-        platformCapabilities.setCapability("browserstack.key", accessKey);
-        return new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
     }
 
     /**
@@ -191,6 +162,60 @@ public class WebDriverFactory {
         return webDriver;
     }
 
+
+    public WebDriver createOnPremGridDriver(Platform platform, String testName) throws MalformedURLException {
+        RemoteDriverConfig remoteDriverConfig = webDriverConfiguration.getRemoteDriverConfig();
+        DesiredCapabilities platformCapabilities = new DesiredCapabilities();
+        platformCapabilities.setBrowserName(platform.getBrowser());
+        return new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+    }
+
+
+    @SneakyThrows
+    public WebDriver createRemoteWebDriver(Platform platform, String testName) {
+        RemoteDriverConfig remoteDriverConfig = webDriverConfiguration.getRemoteDriverConfig();
+        CommonCapabilities commonCapabilities = remoteDriverConfig.getCommonCapabilities();
+        DesiredCapabilities platformCapabilities = new DesiredCapabilities();
+        LocalTunnelConfig localTunnelConfig = remoteDriverConfig.getLocalTunnel();
+        if (localTunnelConfig.getEnable()) {
+            platformCapabilities.setCapability("browserstack.local", localTunnelConfig.getEnable());
+            LocalTesting.createInstance(remoteDriverConfig, platformCapabilities);
+        }
+
+
+        if (StringUtils.isNotEmpty(platform.getDevice())) {
+            platformCapabilities.setCapability("device", platform.getDevice());
+        }
+        platformCapabilities.setCapability("browser", platform.getBrowser());
+        platformCapabilities.setCapability("browser_version", platform.getBrowserVersion());
+        platformCapabilities.setCapability("os", platform.getOs());
+        platformCapabilities.setCapability("os_version", platform.getOsVersion());
+        platformCapabilities.setCapability("name", testName);
+        platformCapabilities.setCapability("project", commonCapabilities.getProject());
+        platformCapabilities.setCapability("build", createBuildName(commonCapabilities.getBuildPrefix()));
+
+        if (commonCapabilities.getCapabilities() != null) {
+            commonCapabilities.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
+        }
+
+        if (platform.getCapabilities() != null) {
+            platform.getCapabilities().getCapabilityMap().forEach(platformCapabilities::setCapability);
+        }
+        String user = remoteDriverConfig.getUser();
+        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_USERNAME))) {
+            user = System.getenv(BROWSERSTACK_USERNAME);
+        }
+        String accessKey = remoteDriverConfig.getAccessKey();
+        if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
+            accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
+        }
+        platformCapabilities.setCapability("browserstack.user", user);
+        platformCapabilities.setCapability("browserstack.key", accessKey);
+        RemoteWebDriver driver = new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+        return driver;
+    }
+
+
     public List<Platform> getPlatforms() {
         return this.webDriverConfiguration.getActivePlatforms();
     }
@@ -201,11 +226,17 @@ public class WebDriverFactory {
         }
         String buildName = buildPrefix;
 
-        String buildSuffix = this.defaultBuildSuffix;
+        String buildSuffix = this.DEFAULTBUILDSUFFIX;
         if (StringUtils.isNotEmpty(System.getenv(BUILD_ID))) {
             buildSuffix = System.getenv(BUILD_ID);
         }
         return buildName + "-" + buildSuffix;
+    }
+
+
+
+    public DriverType getDriverType() {
+        return webDriverConfiguration.getDriverType();
     }
 
 }

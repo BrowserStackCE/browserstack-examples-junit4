@@ -11,12 +11,12 @@ localDriver:
 #    - name: safari
 #      driverPath:
 #      capabilities:
-#      #    -
+#      #
 
 remoteDriver:
   hubUrl: https://hub-cloud.browserstack.com/wd/hub
   user: BROWSERSTACK_USERNAME
-  accessKey: BROWSERSTACK_ACCESS_KEY
+  accessKey: BROWSERSTACK_ACCESSKEY
   localTunnel:
     enable: false
     forceLocal: false
