@@ -18,17 +18,13 @@
         <logback.version>1.2.3</logback.version>
         <capabilities.config.file>capabilities.yml</capabilities.config.file>
         <parallel.count>5</parallel.count>
-        <parallel.type>all</parallel.type>
+        <parallel.type>classes</parallel.type>
         <aspectj.version>1.8.10</aspectj.version>
         <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+        <BUILD_TIME>${maven.build.timestamp}</BUILD_TIME>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>com.browserstack</groupId>
@@ -88,7 +84,6 @@
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -103,22 +98,20 @@
                     <includes>
                         <included.tests>${included.tests}</included.tests>
                     </includes>
-                    <parallel>${parallel.type}</parallel>
-                    <threadCount>${parallel.count}</threadCount>
                     <redirectTestOutputToFile>false</redirectTestOutputToFile>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>io.qameta.allure.junit4.AllureJunit4</value>
-                        </property>
-                    </properties>
+
                     <systemPropertyVariables>
                         <capabilities.config>${capabilities.config.file}</capabilities.config>
                     </systemPropertyVariables>
+                    <parallel>${parallel.type}</parallel>
+                    <threadCountMethods>${parallel.count}</threadCountMethods>
+                    <perCoreThreadCount>false</perCoreThreadCount>
+                    <useUnlimitedThreads>true</useUnlimitedThreads>
+
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -129,6 +122,7 @@
                 </dependencies>
             </plugin>
         </plugins>
+
     </build>
 
     <profiles>
@@ -148,6 +142,7 @@
                 <capabilities.config.file>capabilities-bstack-parallel.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/*.java</included.tests>
                 <parallel.type>all</parallel.type>
+                <threadCountMethods>5</threadCountMethods>
             </properties>
         </profile>
 
@@ -167,7 +162,7 @@
             <properties>
                 <capabilities.config.file>capabilities-bstack-single.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
-                <parallel>classes</parallel>
+                <parallel.type>classes</parallel.type>
             </properties>
         </profile>
 
@@ -198,6 +193,7 @@
                 <capabilities.config.file>capabilities-bstack-parallel-browsers.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/*.java</included.tests>
                 <parallel.type>classes</parallel.type>
+                <threadCountMethods>5</threadCountMethods>
             </properties>
         </profile>
 
@@ -218,6 +214,7 @@
                 <capabilities.config.file>capabilities-bstack-local-parallel-browsers.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/*.java</included.tests>
                 <parallel.type>classes</parallel.type>
+                <threadCountMethods>5</threadCountMethods>
             </properties>
         </profile>
 
@@ -228,8 +225,10 @@
                 <capabilities.config.file>capabilities-bstack-local-parallel.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/*.java</included.tests>
                 <parallel.type>all</parallel.type>
+                <threadCountMethods>5</threadCountMethods>
             </properties>
         </profile>
 
     </profiles>
+
 </project>
