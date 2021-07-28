@@ -1,15 +1,11 @@
 package com.browserstack.examples.config;
 
-import lombok.Data;
-import lombok.ToString;
-
 /**
  * Created with IntelliJ IDEA.
  *
  * @author Anirudha Khanna
  */
-@Data
-@ToString
+
 public class CommonCapabilities {
 
     private String project;
@@ -17,4 +13,28 @@ public class CommonCapabilities {
     private String buildPrefix;
 
     private Capabilities capabilities;
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public String getBuildPrefix() {
+        return buildPrefix;
+    }
+
+    public void setBuildPrefix(String buildPrefix) {
+        this.buildPrefix = buildPrefix;
+    }
+
+    public Capabilities getCapabilities() {
+        return capabilities;
+    }
+
+    public void setCapabilities(Capabilities capabilities) {
+        this.capabilities = capabilities;
+    }
 }

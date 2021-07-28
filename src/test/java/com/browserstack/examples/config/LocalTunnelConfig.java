@@ -1,19 +1,30 @@
 package com.browserstack.examples.config;
 
-import lombok.Data;
-import lombok.ToString;
-
 /**
  * Created with IntelliJ IDEA.
  *
  * @author Anirudha Khanna
  */
-@Data
-@ToString
+
 public class LocalTunnelConfig {
 
     private Boolean enable;
 
     private Boolean forceLocal;
 
+    public Boolean getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
+
+    public Boolean getForceLocal() {
+        return forceLocal;
+    }
+
+    public void setForceLocal(Boolean forceLocal) {
+        this.forceLocal = forceLocal;
+    }
 }

@@ -7,16 +7,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.ToString;
 
 /**
  * Created with IntelliJ IDEA.
  *
  * @author Anirudha Khanna
  */
-@Data
-@ToString
+
 public class WebDriverConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverConfiguration.class);
@@ -44,5 +41,41 @@ public class WebDriverConfiguration {
         }
 
         return activePlatforms;
+    }
+
+    public static Logger getLOGGER() {
+        return LOGGER;
+    }
+
+    public String getTestEndpoint() {
+        return testEndpoint;
+    }
+
+    public void setTestEndpoint(String testEndpoint) {
+        this.testEndpoint = testEndpoint;
+    }
+
+    public DriverType getDriverType() {
+        return driverType;
+    }
+
+    public void setDriverType(DriverType driverType) {
+        this.driverType = driverType;
+    }
+
+    public LocalDriverConfig getLocalDriverConfig() {
+        return localDriverConfig;
+    }
+
+    public void setLocalDriverConfig(LocalDriverConfig localDriverConfig) {
+        this.localDriverConfig = localDriverConfig;
+    }
+
+    public RemoteDriverConfig getRemoteDriverConfig() {
+        return remoteDriverConfig;
+    }
+
+    public void setRemoteDriverConfig(RemoteDriverConfig remoteDriverConfig) {
+        this.remoteDriverConfig = remoteDriverConfig;
     }
 }

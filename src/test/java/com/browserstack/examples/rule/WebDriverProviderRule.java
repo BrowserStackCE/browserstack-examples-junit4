@@ -3,7 +3,6 @@ package com.browserstack.examples.rule;
 import java.net.MalformedURLException;
 
 import com.browserstack.examples.config.DriverType;
-import lombok.SneakyThrows;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.JavascriptExecutor;
@@ -37,7 +36,6 @@ public class WebDriverProviderRule extends TestWatcher {
     //  return methodName;
     //}
 
-    @SneakyThrows
     public WebDriver getWebDriver(Platform platform) throws MalformedURLException {
         this.driver = webDriverFactory.createWebDriverForPlatform(platform, this.methodName);
         return driver;

@@ -6,8 +6,6 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.List;
 import com.browserstack.utils.LocalTesting;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -85,7 +83,7 @@ public class WebDriverFactory {
         return webDriverConfiguration;
     }
 
-    public WebDriver createWebDriverForPlatform(Platform platform, String testName) throws Exception {
+    public WebDriver createWebDriverForPlatform(Platform platform, String testName) {
         WebDriver webDriver = null;
         switch (this.webDriverConfiguration.getDriverType()) {
             case localDriver:
@@ -163,15 +161,19 @@ public class WebDriverFactory {
     }
 
 
-    public WebDriver createOnPremGridDriver(Platform platform, String testName) throws MalformedURLException {
+    public WebDriver createOnPremGridDriver(Platform platform, String testName) {
         RemoteDriverConfig remoteDriverConfig = webDriverConfiguration.getRemoteDriverConfig();
         DesiredCapabilities platformCapabilities = new DesiredCapabilities();
         platformCapabilities.setBrowserName(platform.getBrowser());
-        return new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+        try {
+            return new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+        } catch (MalformedURLException e) {
+            LOGGER.error("Invalid Hub URL");
+        }
+    return null;
     }
 
 
-    @SneakyThrows
     public WebDriver createRemoteWebDriver(Platform platform, String testName) {
         RemoteDriverConfig remoteDriverConfig = webDriverConfiguration.getRemoteDriverConfig();
         CommonCapabilities commonCapabilities = remoteDriverConfig.getCommonCapabilities();
@@ -211,7 +213,12 @@ public class WebDriverFactory {
         }
         platformCapabilities.setCapability("browserstack.user", user);
         platformCapabilities.setCapability("browserstack.key", accessKey);
-        RemoteWebDriver driver = new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+        RemoteWebDriver driver = null;
+        try {
+            driver = new RemoteWebDriver(new URL(remoteDriverConfig.getHubUrl()), platformCapabilities);
+        } catch (MalformedURLException e) {
+            LOGGER.error("Hub URL is invalid");
+        }
         return driver;
     }
 
