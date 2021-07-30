@@ -15,16 +15,10 @@ import org.slf4j.LoggerFactory;
 import static org.junit.Assert.assertTrue;
 import static org.openqa.selenium.Keys.ENTER;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 @RunWith(Parameterized.class)
 public class LockedUserTest extends AbstractWebDriverTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LockedUserTest.class);
-
 
     @Test
     public void lockedUserTest() throws Exception {

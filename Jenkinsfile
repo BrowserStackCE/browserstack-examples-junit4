@@ -4,24 +4,22 @@ node {
     try {
         properties([
             parameters([
-                credentials(credentialType: 'com.browserstack.automate.ci.jenkins.BrowserStackCredentials', defaultValue: '45d4ca9d-b349-4c13-8d94-bc81aedf4ac1', description: 'Select your BrowserStack Username', name: 'BROWSERSTACK_USERNAME', required: true),
-                [$class: 'ExtensibleChoiceParameterDefinition',
-                choiceListProvider: [
-                    $class: 'TextareaChoiceListProvider',
-                    addEditedValue: false,
-                    choiceListText: '''bstack-single
-                                        bstack-parallel
-                                        bstack-parallel-browsers
-                                        bstack-local
-                                        bstack-local-parallel
-                                        bstack-local-parallel-browsers''',
-                    defaultChoice: 'bstack-parallel'
-                ],
-                description: 'Select the test you would like to run',
-                editable: false,
-                name: 'TEST_TYPE']
-            ])
-        ])
+            credentials(credentialType: 'com.browserstack.automate.ci.jenkins.BrowserStackCredentials',
+        defaultValue: '',
+        description: 'Select your BrowserStack Username',
+        name: 'BROWSERSTACK_USERNAME', required: true),
+        choice(
+        choices: [
+        'bstack-single',
+        'bstack-parallel',
+        'bstack-parallel-browsers',
+        'bstack-local',
+        'bstack-local-parallel',
+        'bstack-local-parallel-browsers'],
+        description: 'Select the test you would like to run',
+        name: 'TEST_TYPE')])])
+
+
 
         stage('Pull from Github') {
             dir('test') {
@@ -67,6 +65,11 @@ node {
         notifySlack(currentBuild.result)
     }
 }
+
+        stage('Generate Report'){
+                    allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                }
+
 
 def notifySlack(String buildStatus = 'STARTED') {
     // Build status of null means success.

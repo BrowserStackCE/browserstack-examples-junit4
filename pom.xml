@@ -84,11 +84,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -98,12 +93,16 @@
                     <includes>
                         <included.tests>${included.tests}</included.tests>
                     </includes>
-                    <redirectTestOutputToFile>false</redirectTestOutputToFile>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>io.qameta.allure.junit4.AllureJunit4</value>
+                        </property>
+                    </properties>
                     <systemPropertyVariables>
                         <capabilities.config>${capabilities.config.file}</capabilities.config>
                     </systemPropertyVariables>
@@ -111,7 +110,6 @@
                     <threadCountMethods>${parallel.count}</threadCountMethods>
                     <perCoreThreadCount>false</perCoreThreadCount>
                     <useUnlimitedThreads>true</useUnlimitedThreads>
-
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -121,7 +119,25 @@
                     </dependency>
                 </dependencies>
             </plugin>
-        </plugins>
+
+
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+                <execution>
+                    <id>my-exec</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <executable>allure-generate.sh</executable>
+            </configuration>
+        </plugin></plugins>
 
     </build>
 
@@ -192,7 +208,7 @@
             <properties>
                 <capabilities.config.file>capabilities-bstack-parallel-browsers.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/*.java</included.tests>
-                <parallel.type>classes</parallel.type>
+                <parallel.type>all</parallel.type>
                 <threadCountMethods>5</threadCountMethods>
             </properties>
         </profile>
@@ -203,7 +219,7 @@
             <properties>
                 <capabilities.config.file>capabilities-bstack-local.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
-                <parallel.type>classes</parallel.type>
+                <parallel.type>all</parallel.type>
             </properties>
         </profile>
 
@@ -213,7 +229,7 @@
             <properties>
                 <capabilities.config.file>capabilities-bstack-local-parallel-browsers.yml</capabilities.config.file>
                 <included.tests>com/browserstack/suites/**/*.java</included.tests>
-                <parallel.type>classes</parallel.type>
+                <parallel.type>all</parallel.type>
                 <threadCountMethods>5</threadCountMethods>
             </properties>
         </profile>

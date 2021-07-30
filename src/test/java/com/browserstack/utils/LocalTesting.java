@@ -2,6 +2,7 @@ package com.browserstack.utils;
 
 import com.browserstack.examples.config.RemoteDriverConfig;
 import com.browserstack.local.Local;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,8 @@ public class LocalTesting extends Thread {
 
     private static final Semaphore BINARY_SEMAPHORE = new Semaphore(1);
 
+    private static final String BROWSERSTACK_ACCESS_KEY = "BROWSERSTACK_ACCESS_KEY";
+
     static Local bsLocal = new Local();
 
     private static final Logger  LOGGER= LoggerFactory.getLogger(LocalTesting.class);
@@ -25,7 +28,12 @@ public class LocalTesting extends Thread {
            BINARY_SEMAPHORE.acquire();
                 if (!bsLocal.isRunning()) {
                     HashMap<String, String> bsLocalArgs = new HashMap<String, String>();
-                    bsLocalArgs.put("key", remoteDriverConfig.getAccessKey());
+                    String accessKey = remoteDriverConfig.getAccessKey();
+                    if (StringUtils.isNoneEmpty(System.getenv(BROWSERSTACK_ACCESS_KEY))) {
+                        accessKey = System.getenv(BROWSERSTACK_ACCESS_KEY);
+                    }
+                    bsLocalArgs.put("key", accessKey);
+                    System.out.println("ACCESS_KEY Is: "+accessKey);
                     bsLocal.start(bsLocalArgs);
                 }
             BINARY_SEMAPHORE.release();

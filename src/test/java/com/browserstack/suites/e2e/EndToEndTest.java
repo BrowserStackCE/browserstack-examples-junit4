@@ -11,14 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 @RunWith(Parameterized.class)
 public class EndToEndTest extends AbstractWebDriverTest {
 
