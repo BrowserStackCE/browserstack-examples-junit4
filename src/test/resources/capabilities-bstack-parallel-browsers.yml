@@ -5,7 +5,7 @@ driverType: remoteDriver
 localDriver:
   platforms:
     - name: chrome
-      driverPath: /Users/anirudha/bin/chromedriver
+      driverPath: <Enter The ChromeDriver Path>
       capabilities:
       #    -
 #    - name: safari
