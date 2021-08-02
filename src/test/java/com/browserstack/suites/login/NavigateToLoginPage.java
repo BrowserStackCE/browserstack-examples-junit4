@@ -13,11 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 @RunWith(Parameterized.class)
 public class NavigateToLoginPage extends AbstractWebDriverTest {
 
