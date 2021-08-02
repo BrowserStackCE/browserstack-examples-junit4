@@ -228,6 +228,11 @@ public class WebDriverFactory {
     }
 
     private String createBuildName(String buildPrefix) {
+
+        if(StringUtils.isNotEmpty(System.getenv("BROWSERSTACK_BUILD_NAME"))){
+            return System.getenv("BROWSERSTACK_BUILD_NAME");
+        }
+
         if (StringUtils.isEmpty(buildPrefix)) {
             buildPrefix = DEFAULT_BUILD_NAME;
         }
