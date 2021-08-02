@@ -2,12 +2,6 @@ package com.browserstack.examples.config;
 
 import java.util.List;
 
-
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 public class LocalDriverConfig {
 
     private List<Platform> platforms;

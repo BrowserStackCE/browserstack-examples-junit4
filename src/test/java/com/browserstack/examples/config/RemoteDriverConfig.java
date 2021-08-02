@@ -5,12 +5,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
-
 public class RemoteDriverConfig {
 
     private String hubUrl;

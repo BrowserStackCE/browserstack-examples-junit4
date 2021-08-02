@@ -5,13 +5,6 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 
-
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
-
 public class Capabilities {
 
     private Map<String, Object> capabilityMap = new LinkedHashMap<>();

@@ -11,11 +11,6 @@ import org.slf4j.LoggerFactory;
 import com.browserstack.examples.config.Platform;
 import com.browserstack.examples.rule.WebDriverProviderRule;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 public abstract class AbstractWebDriverTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractWebDriverTest.class);

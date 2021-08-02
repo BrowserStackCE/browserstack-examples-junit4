@@ -1,10 +1,5 @@
 package com.browserstack.examples.config;
 
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 
 public class CommonCapabilities {
 

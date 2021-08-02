@@ -1,7 +1,5 @@
 package com.browserstack.examples.rule;
-
 import java.net.MalformedURLException;
-
 import com.browserstack.examples.config.DriverType;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
@@ -12,12 +10,6 @@ import org.slf4j.LoggerFactory;
 import com.browserstack.examples.config.Platform;
 import com.browserstack.examples.config.WebDriverFactory;
 
-
-/**
- * Created with IntelliJ IDEA.
- *
- * @author Anirudha Khanna
- */
 public class WebDriverProviderRule extends TestWatcher {
     private static final Logger LOGGER = LoggerFactory.getLogger(WebDriverProviderRule.class);
     private static final String TEST_STATUS_SCRIPT = "browserstack_executor: {\"action\": \"setSessionStatus\", \"arguments\": {\"status\": \"%s\", \"reason\": \"%s\"}}";

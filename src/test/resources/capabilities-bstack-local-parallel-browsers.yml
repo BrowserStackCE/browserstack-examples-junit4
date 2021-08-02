@@ -1,5 +1,5 @@
 testEndpoint: http://localhost:3000
-
+# Specify the EndPoint of application under test above
 driverType: remoteDriver
 
 localDriver:
