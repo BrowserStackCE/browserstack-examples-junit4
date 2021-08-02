@@ -21,6 +21,7 @@
         <parallel.type>classes</parallel.type>
         <aspectj.version>1.8.10</aspectj.version>
         <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+        <test-name>com/browserstack/suites/**/EndToEndTest.java</test-name>
         <BUILD_TIME>${maven.build.timestamp}</BUILD_TIME>
     </properties>
 
@@ -105,6 +106,7 @@
                     </properties>
                     <systemPropertyVariables>
                         <capabilities.config>${capabilities.config.file}</capabilities.config>
+                        <test-name>System.getProperty("test-name")</test-name>
                     </systemPropertyVariables>
                     <parallel>${parallel.type}</parallel>
                     <threadCountMethods>${parallel.count}</threadCountMethods>
@@ -137,7 +139,8 @@
             <configuration>
                 <executable>allure-generate.sh</executable>
             </configuration>
-        </plugin></plugins>
+        </plugin>
+    </plugins>
 
     </build>
 
@@ -177,7 +180,7 @@
             <id>bstack-single</id>
             <properties>
                 <capabilities.config.file>capabilities-bstack-single.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+                <included.tests>${test-name}</included.tests>
                 <parallel.type>classes</parallel.type>
             </properties>
         </profile>
@@ -187,7 +190,7 @@
             <id>on-prem</id>
             <properties>
                 <capabilities.config.file>capabilities-on-prem.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+                <included.tests>${test-name}</included.tests>
                 <parallel.type>all</parallel.type>
             </properties>
         </profile>
@@ -197,7 +200,7 @@
             <id>docker</id>
             <properties>
                 <capabilities.config.file>capabilities-docker.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+                <included.tests>${test-name}</included.tests>
                 <parallel>all</parallel>
             </properties>
         </profile>
@@ -218,7 +221,7 @@
             <id>bstack-local</id>
             <properties>
                 <capabilities.config.file>capabilities-bstack-local.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
+                <included.tests>${test-name}</included.tests>
                 <parallel.type>all</parallel.type>
             </properties>
         </profile>

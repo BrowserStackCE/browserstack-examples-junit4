@@ -3,7 +3,7 @@ testEndpoint: https://bstackdemo.com
 driverType: localDriver
 
 #For this infrastructure configuration (i.e on-premise),
-#ensure that the ChromeDriver executable is placed in the `/src/test/resources/drivers` folder.
+#ensure to provide path of binary executable in driverPath field below
 #Do Ensure ChromeDriver executable corresponds to your browser version.
 
 
