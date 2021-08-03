@@ -2,17 +2,6 @@ testEndpoint: http://localhost:3000
 # Specify the EndPoint of application under test above
 driverType: remoteDriver
 
-localDriver:
-  platforms:
-    - name: chrome
-      driverPath: <Enter The ChromeDriver Path>
-      capabilities:
-      #    -
-#    - name: safari
-#      driverPath:
-#      capabilities:
-#      #    -
-
 remoteDriver:
   hubUrl: https://hub-cloud.browserstack.com/wd/hub
   user: BROWSERSTACK_USERNAME
