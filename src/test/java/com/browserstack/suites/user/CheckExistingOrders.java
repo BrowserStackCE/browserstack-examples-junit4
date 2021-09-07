@@ -1,6 +1,6 @@
 package com.browserstack.suites.user;
 
-import com.browserstack.webdriver.junit4.AbstractWebDriverTest;
+import com.browserstack.examples.tests.AbstractWebDriverTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

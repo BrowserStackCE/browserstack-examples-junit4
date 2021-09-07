@@ -1,8 +1,8 @@
 testEndpoint: https://bstackdemo.com
 
-driverType: onPremDriver
+driverType: localDriver
 
-onPremDriver:
+localDriver:
   platforms:
     - name: chrome
       driverPath: /Users/bhagyesh/Downloads/Driver/chromedriver

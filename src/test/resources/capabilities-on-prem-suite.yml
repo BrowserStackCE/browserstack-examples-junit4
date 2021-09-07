@@ -1,12 +1,12 @@
 testEndpoint: https://bstackdemo.com
 
-driverType: onPremDriver
+driverType: localDriver
 
 #For this infrastructure configuration (i.e on-premise),
 #ensure to provide path of binary executable in driverPath field below
 #Do Ensure ChromeDriver executable corresponds to your browser version.
 
-onPremDriver:
+localDriver:
   platforms:
     - name: chrome
       driverPath: <Use The ChromeDriver Executable Path Here>

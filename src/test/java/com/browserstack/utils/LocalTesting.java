@@ -1,7 +1,7 @@
 package com.browserstack.utils;
 
+import com.browserstack.examples.config.RemoteDriverConfig;
 import com.browserstack.local.Local;
-import com.browserstack.webdriver.config.RemoteDriverConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;

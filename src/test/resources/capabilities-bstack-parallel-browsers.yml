@@ -1,13 +1,13 @@
 testEndpoint: https://bstackdemo.com
 
-driverType: cloudDriver
+driverType: remoteDriver
 
-cloudDriver:
+remoteDriver:
   hubUrl: https://hub-cloud.browserstack.com/wd/hub
   user: BROWSERSTACK_USERNAME
   accessKey: BROWSERSTACK_ACCESSKEY
   localTunnel:
-    enabled: false
+    enable: false
     forceLocal: false
   common_capabilities:
     project:

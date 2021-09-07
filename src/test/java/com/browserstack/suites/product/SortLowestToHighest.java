@@ -1,7 +1,7 @@
 package com.browserstack.suites.product;
 
+import com.browserstack.examples.tests.AbstractWebDriverTest;
 import com.browserstack.utils.CommonSteps;
-import com.browserstack.webdriver.junit4.AbstractWebDriverTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
