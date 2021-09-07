@@ -1,0 +1,22 @@
+testEndpoint: https://bstackdemo.com
+
+driverType: localDriver
+
+#For this infrastructure configuration (i.e on-premise),
+#ensure to provide path of binary executable in driverPath field below
+#Do Ensure ChromeDriver executable corresponds to your browser version.
+
+localDriver:
+  platforms:
+    - name: chrome
+      driverPath: <Use The ChromeDriver Executable Path Here>
+      capabilities:
+      #    -
+#    - name: safari
+#      driverPath:
+#      capabilities:
+#      #
+
+
+
+
