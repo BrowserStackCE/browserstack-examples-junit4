@@ -1,13 +1,13 @@
 testEndpoint: http://localhost:3000
 # Specify the EndPoint of application under test above
-driverType: remoteDriver
+driverType: cloudDriver
 
-remoteDriver:
+cloudDriver:
   hubUrl: https://hub-cloud.browserstack.com/wd/hub
   user: BROWSERSTACK_USERNAME
   accessKey: BROWSERSTACK_ACCESSKEY
   localTunnel:
-    enable: true
+    enabled: true
     forceLocal: true
   common_capabilities:
     project:

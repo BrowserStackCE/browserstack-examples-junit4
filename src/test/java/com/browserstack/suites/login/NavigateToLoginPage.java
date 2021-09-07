@@ -1,6 +1,6 @@
 package com.browserstack.suites.login;
 
-import com.browserstack.examples.tests.AbstractWebDriverTest;
+import com.browserstack.webdriver.junit4.AbstractWebDriverTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
