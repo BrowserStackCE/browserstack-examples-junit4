@@ -33,7 +33,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.browserstack.webdriver.junit4</groupId>
+            <groupId>com.browserstack</groupId>
             <artifactId>webdriver-framework-junit4</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
