@@ -1,7 +1,7 @@
 package com.browserstack.suites.product;
 
+import com.browserstack.utils.BaseTest;
 import com.browserstack.utils.CommonSteps;
-import com.browserstack.webdriver.junit4.AbstractWebDriverTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -12,10 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
+
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
-public class SortLowestToHighest extends AbstractWebDriverTest {
+public class SortLowestToHighest extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SortLowestToHighest.class);
 
@@ -23,9 +25,9 @@ public class SortLowestToHighest extends AbstractWebDriverTest {
     public void lowestToHighest() throws Exception {
 
         /* =================== Prepare ================= */
-        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
-        WebDriverWait wait = new WebDriverWait(webDriver, 20);
-        webDriver.get(getTestEndpoint());
+//        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+//        webDriver.get(getTestEndpoint());
 
         /* =================== Execute ================= */
         wait.until(ExpectedConditions

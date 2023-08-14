@@ -1,31 +1,25 @@
 package com.browserstack.suites.e2e;
 
 import com.browserstack.pages.*;
-import com.browserstack.webdriver.junit4.AbstractWebDriverTest;
+import com.browserstack.utils.BaseTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.By;
+
+import java.time.Duration;
+
 import static org.junit.Assert.assertTrue;
 
-@RunWith(Parameterized.class)
-public class EndToEndTest extends AbstractWebDriverTest {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EndToEndTest.class);
+public class EndToEndTest extends BaseTest {
 
     @Test
     public void endToEndTest() throws Exception {
 
-        /* =================== Prepare ================= */
-        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        webDriver.get(getTestEndpoint());
-
+        // Initialize WebDriverWait using the WebDriver instance
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
         /* =================== Execute ================= */
        HomePage homepage = new HomePage(webDriver, wait);
@@ -36,6 +30,7 @@ public class EndToEndTest extends AbstractWebDriverTest {
        FavUserHomePage favUserHomePage = new FavUserHomePage(webDriver ,wait);
 
         /* =================== Verify ================= */
+
         wait.until(ExpectedConditions.urlContains("/orders"));
         wait.until(ExpectedConditions
                .visibilityOfElementLocated(By
@@ -44,7 +39,5 @@ public class EndToEndTest extends AbstractWebDriverTest {
         assertTrue(count == 3);
 
     }
-
-
 
 }
