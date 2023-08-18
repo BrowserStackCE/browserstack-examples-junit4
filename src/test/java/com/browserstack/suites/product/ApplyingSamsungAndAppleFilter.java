@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
-@RunWith(Parameterized.class)
 public class ApplyingSamsungAndAppleFilter extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplyingSamsungAndAppleFilter.class);

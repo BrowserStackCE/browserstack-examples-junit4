@@ -1,5 +1,6 @@
 package com.browserstack.utils;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,13 @@ public class BaseTest {
     public void init() {
         System.setProperty("webdriver.chrome.driver", "/Users/adarsh/Downloads/chromedriver");
         webDriver = new ChromeDriver(); // Initialize the class-level driver variable
-        webDriver.get("https://www.bstackdemo.com/");
+
+        if (StringUtils.equalsIgnoreCase(System.getProperty("browserstack-local"),"true")) {
+            webDriver.get("http://localhost:45454/");
+        } else {
+            webDriver.get("https://bstackdemo.com");
+        }
+
     }
 
     @After

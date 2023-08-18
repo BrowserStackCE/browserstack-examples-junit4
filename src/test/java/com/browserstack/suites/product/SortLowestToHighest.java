@@ -16,7 +16,6 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;
 
-@RunWith(Parameterized.class)
 public class SortLowestToHighest extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SortLowestToHighest.class);

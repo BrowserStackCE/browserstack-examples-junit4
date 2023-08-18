@@ -19,7 +19,6 @@ import java.time.Duration;
 import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.Keys.ENTER;
 
-@RunWith(Parameterized.class)
 public class ImageNotLoading extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageNotLoading.class);

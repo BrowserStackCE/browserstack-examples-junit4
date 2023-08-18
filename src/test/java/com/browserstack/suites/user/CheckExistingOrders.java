@@ -16,7 +16,6 @@ import java.time.Duration;
 
 import static org.openqa.selenium.Keys.ENTER;
 
-@RunWith(Parameterized.class)
 public class CheckExistingOrders extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckExistingOrders.class);

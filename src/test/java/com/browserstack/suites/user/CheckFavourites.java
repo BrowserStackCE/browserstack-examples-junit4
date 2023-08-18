@@ -18,7 +18,6 @@ import java.time.Duration;
 import static org.junit.Assert.assertTrue;
 import static org.openqa.selenium.Keys.ENTER;
 
-@RunWith(Parameterized.class)
 public class CheckFavourites extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckFavourites.class);

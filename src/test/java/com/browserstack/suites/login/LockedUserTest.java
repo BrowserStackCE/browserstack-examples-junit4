@@ -2,8 +2,6 @@ package com.browserstack.suites.login;
 
 import com.browserstack.utils.BaseTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +15,7 @@ import java.time.Duration;
 import static org.junit.Assert.assertTrue;
 import static org.openqa.selenium.Keys.ENTER;
 
-@RunWith(Parameterized.class)
+
 public class LockedUserTest extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LockedUserTest.class);

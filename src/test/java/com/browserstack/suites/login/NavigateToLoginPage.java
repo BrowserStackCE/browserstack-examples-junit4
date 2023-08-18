@@ -2,8 +2,6 @@ package com.browserstack.suites.login;
 
 import com.browserstack.utils.BaseTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,7 +13,6 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;
 
-@RunWith(Parameterized.class)
 public class NavigateToLoginPage extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(NavigateToLoginPage.class);

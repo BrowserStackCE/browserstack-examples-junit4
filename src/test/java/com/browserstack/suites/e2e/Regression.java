@@ -3,7 +3,6 @@ package com.browserstack.suites.e2e;
 import com.browserstack.pages.*;
 import com.browserstack.utils.BaseTest;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.By;
@@ -13,7 +12,7 @@ import java.time.Duration;
 import static org.junit.Assert.assertTrue;
 
 
-public class EndToEndTest extends BaseTest {
+public class Regression extends BaseTest {
 
     @Test
     public void endToEndTest() throws Exception {
