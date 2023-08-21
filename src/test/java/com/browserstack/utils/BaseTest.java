@@ -12,12 +12,16 @@ public class BaseTest {
 
     @Before
     public void init() {
-        System.setProperty("webdriver.chrome.driver", "/Users/adarsh/Downloads/chromedriver");
-        webDriver = new ChromeDriver(); // Initialize the class-level driver variable
+//        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
+//        webDriver = new ChromeDriver();
 
         if (StringUtils.equalsIgnoreCase(System.getProperty("browserstack-local"),"true")) {
-            webDriver.get("http://localhost:45454/");
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
+            webDriver = new ChromeDriver();
+
         } else {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
+            webDriver = new ChromeDriver();
             webDriver.get("https://bstackdemo.com");
         }
 

@@ -37,17 +37,18 @@ The Selenium tests could be ran on different platforms like on-prem, docker and 
 
 This repository contains the following Selenium tests:
 
-| Module   | Test name                          | Description |
-  | ---   | ---                                   | --- |
-| E2E      | EndToEndTest                | This test scenario verifies successful product purchase lifecycle end-to-end. It demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
-| Login    | NavigateToLoginPage          | This test verifies the workflow of navigating to Login Page |
-| Login    | LockedUserTest              | This test verifies the login workflow error for a locked user. |
-| Offers   | CheckOffers     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
-| Product  | ApplyingSamsungAndAppleFilter          | This test verifies that Apple and Samsung products are only shown by applying Samsung and Apple vendor filter. |
-| Product  | SortLowestToHighest   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
-| User     | ImageNotLoading | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
-| User     | CheckExistingOrders |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
-| User     | CheckFavourites |  This test verifies that Favourites items are shown for user:  "fav_user"|
+| Module  | Test name                          | Description |
+---------| ---   | ---                                   | --- |
+| E2E     | Regression                | This test scenario verifies successful product purchase lifecycle end-to-end. It demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
+| LocalTest       | BStackLocalTest          | This test verifies the workflow of locally hosted webistes, by navigating to  localhost:3000 url |
+| Login   | NavigateToLoginPage          | This test verifies the workflow of navigating to Login Page |
+| Login   | LockedUserTest              | This test verifies the login workflow error for a locked user. |
+| Offers  | CheckOffers     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
+| Product | ApplyingSamsungAndAppleFilter          | This test verifies that Apple and Samsung products are only shown by applying Samsung and Apple vendor filter. |
+| Product | SortLowestToHighest   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
+| User    | ImageNotLoading | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
+| User    | CheckExistingOrders |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
+| User    | CheckFavourites |  This test verifies that Favourites items are shown for user:  "fav_user"|
   
 ---
 
@@ -55,7 +56,6 @@ This repository contains the following Selenium tests:
 ## Test infrastructure environments
 
 - [On-premise/self-hosted](#on-premise-self-hosted)
-- [Docker](#docker)
 - [BrowserStack](#browserstack)
 
 
@@ -63,25 +63,12 @@ This repository contains the following Selenium tests:
 
 For all the parallel run configuration profiles, you can configure the maximum parallel test threads by changing the settings below.
 
-- Docker
-
-  [docker-compose.yml](docker-compose.yml)
-  
-  scale = 4
 
 - BrowserStack
 
-  - Maven:
+    [browserstack.yml](browserstack.yml)
 
-    [pom.xml](pom.xml)
-
-    parallel-count = 5
-
-  - Gradle:
-
-    [build.gradle.kts](build.gradle.kts)
-
-    parallelCount = 5
+    parallelsPerPlatform = 5
 
 ## Test Reporting
 
@@ -461,11 +448,6 @@ In this section, we will run the test cases to test the internally hosted websit
   Maven:
   ```sh
   mvn test -P bstack-local-parallel-browsers
-  ```
-
-  Gradle:
-    ```sh
-  gradle bstack-local-parallel-browsers
   ```
 
 - Output
