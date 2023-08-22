@@ -74,8 +74,6 @@ For all the parallel run configuration profiles, you can configure the maximum p
 ## Test Reporting
 
 - [Allure reports](#generating-allure-reports)
-- [Test Observability](#generating-allure-reports)
-
 ---
 
 # On Premise / Self Hosted
