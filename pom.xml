@@ -110,7 +110,7 @@
 
                     <plugin>
                         <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.3.0</version>
+                        <version>3.6.0</version>
                         <executions>
                             <execution>
                                 <id>getClasspathFilenames</id>
@@ -148,7 +148,7 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.3.0</version>
+                        <version>3.6.0</version>
                         <executions>
                             <execution>
                                 <id>getClasspathFilenames</id>
@@ -169,12 +169,13 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.22.2</version>
                         <configuration>
                             <systemPropertyVariables>
                                 <browserstack-local>true</browserstack-local>
                             </systemPropertyVariables>
                             <includes>
-                                <include>**/suites/localTest/BStackLocalTest.java</include>
+                                <include>**/suites/localTest/**/*.java</include>
                             </includes>
                             <argLine>
                                 -javaagent:${com.browserstack:browserstack-java-sdk:jar}
@@ -183,7 +184,7 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.3.0</version>
+                        <version>3.6.0</version>
                         <executions>
                             <execution>
                                 <id>getClasspathFilenames</id>

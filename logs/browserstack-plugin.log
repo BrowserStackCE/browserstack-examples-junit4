@@ -58,3 +58,27 @@
 01:27:47.755 [ApplicationImpl pooled thread 1267] INFO  com.browserstack.utils.Helpers - null
 02:31:38.427 [ApplicationImpl pooled thread 1408] INFO  c.b.l.BrowserStackRunExtension - maven
 02:31:38.427 [ApplicationImpl pooled thread 1408] INFO  com.browserstack.utils.Helpers - null
+22:47:33.033 [ApplicationImpl pooled thread 627] INFO  c.b.l.BrowserStackRunExtension - maven
+22:47:33.035 [ApplicationImpl pooled thread 627] INFO  com.browserstack.utils.Helpers - null
+22:51:23.475 [ApplicationImpl pooled thread 625] INFO  c.b.l.BrowserStackRunExtension - maven
+22:51:23.476 [ApplicationImpl pooled thread 625] INFO  com.browserstack.utils.Helpers - null
+23:07:25.212 [ApplicationImpl pooled thread 686] INFO  c.b.l.BrowserStackRunExtension - testng
+23:07:25.213 [ApplicationImpl pooled thread 686] INFO  com.browserstack.utils.Helpers - null
+23:07:25.214 [ApplicationImpl pooled thread 686] INFO  com.browserstack.utils.Helpers - /Users/adarsh/.m2/repository/com/browserstack/browserstack-java-sdk/1.10.2/browserstack-java-sdk-1.10.2.jar
+23:07:25.214 [ApplicationImpl pooled thread 686] INFO  c.b.l.BrowserStackRunExtension - Agent path: /Users/adarsh/.m2/repository/com/browserstack/browserstack-java-sdk/1.10.2/browserstack-java-sdk-1.10.2.jar
+23:07:25.214 [ApplicationImpl pooled thread 686] INFO  c.b.l.BrowserStackRunExtension - Plugin version: v1.1.2
+23:13:55.476 [ApplicationImpl pooled thread 697] INFO  c.b.l.BrowserStackRunExtension - testng
+23:13:55.477 [ApplicationImpl pooled thread 697] INFO  com.browserstack.utils.Helpers - null
+23:13:55.480 [ApplicationImpl pooled thread 697] INFO  com.browserstack.utils.Helpers - /Users/adarsh/.m2/repository/com/browserstack/browserstack-java-sdk/1.10.2/browserstack-java-sdk-1.10.2.jar
+23:13:55.480 [ApplicationImpl pooled thread 697] INFO  c.b.l.BrowserStackRunExtension - Agent path: /Users/adarsh/.m2/repository/com/browserstack/browserstack-java-sdk/1.10.2/browserstack-java-sdk-1.10.2.jar
+23:13:55.480 [ApplicationImpl pooled thread 697] INFO  c.b.l.BrowserStackRunExtension - Plugin version: v1.1.2
+23:16:44.609 [ApplicationImpl pooled thread 688] INFO  c.b.l.BrowserStackRunExtension - testng
+23:16:44.610 [ApplicationImpl pooled thread 688] INFO  com.browserstack.utils.Helpers - null
+23:16:44.611 [ApplicationImpl pooled thread 688] INFO  com.browserstack.utils.Helpers - /Users/adarsh/.m2/repository/com/browserstack/browserstack-java-sdk/1.10.2/browserstack-java-sdk-1.10.2.jar
+23:16:44.611 [ApplicationImpl pooled thread 688] INFO  c.b.l.BrowserStackRunExtension - Agent path: /Users/adarsh/.m2/repository/com/browserstack/browserstack-java-sdk/1.10.2/browserstack-java-sdk-1.10.2.jar
+23:16:44.611 [ApplicationImpl pooled thread 688] INFO  c.b.l.BrowserStackRunExtension - Plugin version: v1.1.2
+23:19:10.143 [ApplicationImpl pooled thread 718] INFO  c.b.l.BrowserStackRunExtension - testng
+23:19:10.144 [ApplicationImpl pooled thread 718] INFO  com.browserstack.utils.Helpers - null
+23:19:10.146 [ApplicationImpl pooled thread 718] INFO  com.browserstack.utils.Helpers - /Users/adarsh/.m2/repository/com/browserstack/browserstack-java-sdk/1.10.2/browserstack-java-sdk-1.10.2.jar
+23:19:10.146 [ApplicationImpl pooled thread 718] INFO  c.b.l.BrowserStackRunExtension - Agent path: /Users/adarsh/.m2/repository/com/browserstack/browserstack-java-sdk/1.10.2/browserstack-java-sdk-1.10.2.jar
+23:19:10.146 [ApplicationImpl pooled thread 718] INFO  c.b.l.BrowserStackRunExtension - Plugin version: v1.1.2

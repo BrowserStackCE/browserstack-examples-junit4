@@ -1507,3 +1507,251 @@ Capabilities {appActivity: com.google.android.apps.chr..., appPackage: com.andro
 21:03:01.310 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
 21:03:01.402 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
 21:03:05.495 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+22:48:35.308 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+22:48:35.310 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+22:48:35.496 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:48:35.802 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+22:48:39.067 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:48:39.736 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+22:48:48.649 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+22:48:49.603 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:48:49.613 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:48:49.619 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:48:52.414 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:48:52.472 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:48:52.489 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:49:26.762 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+22:50:23.327 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+22:50:23.328 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+22:50:23.511 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:50:23.818 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+22:50:26.365 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:50:26.893 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+22:50:35.472 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+22:50:36.407 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:50:36.411 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:50:36.415 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:50:39.185 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:50:39.229 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:50:39.237 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:50:43.398 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+22:51:44.167 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+22:51:44.169 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+22:51:44.350 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:51:44.663 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+22:51:47.256 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:51:48.547 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+22:51:56.361 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+22:51:57.325 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:51:57.331 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:51:57.333 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:52:00.058 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:52:00.095 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:52:00.158 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:52:04.204 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+22:57:05.148 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+22:57:05.150 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+22:57:05.333 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:57:05.645 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+22:57:08.377 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:57:08.910 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+22:57:18.493 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+22:57:19.442 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:57:19.446 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:57:19.448 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+22:57:22.327 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:57:22.371 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:57:22.377 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+22:57:56.659 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:03:42.834 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:03:42.836 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:03:43.011 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:03:43.328 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:03:45.831 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:03:46.400 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:03:55.320 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:03:56.307 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:03:56.311 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:03:56.312 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:03:59.056 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:03:59.140 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:03:59.155 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:04:03.272 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:05:58.657 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:05:58.659 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:05:58.839 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:05:59.152 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:06:01.617 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:06:02.310 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:06:11.097 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:06:12.028 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:06:12.037 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:06:12.040 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:06:14.866 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:06:14.869 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:06:14.903 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:06:48.695 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:07:26.094 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:07:26.096 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:07:26.338 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:07:26.707 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:07:29.483 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:07:29.961 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:07:37.857 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:07:38.864 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:07:38.862 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:07:38.870 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:07:41.758 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:07:41.766 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:07:41.767 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:07:45.823 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:12:43.606 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:12:43.608 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:12:43.810 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:12:44.105 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:12:46.828 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:12:47.558 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:12:56.962 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:12:57.933 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:12:57.936 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:12:57.939 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:13:00.956 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:13:00.995 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:13:00.998 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:13:35.714 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:13:56.180 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:13:56.182 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:13:56.408 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:13:56.841 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:13:59.416 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:13:59.867 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:14:06.907 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:14:07.910 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:14:07.917 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:14:07.927 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:14:10.875 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:14:10.954 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:14:10.992 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:14:32.857 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/1352b5a4e839c66de0085fe9e52e61feaceb07d1
+23:14:32.858 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+23:14:36.302 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:16:45.289 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:16:45.291 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:16:45.505 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:16:45.888 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:16:48.651 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:16:49.156 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:16:58.090 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:16:59.133 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:16:59.134 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:16:59.153 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:17:02.227 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:17:02.265 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:17:02.312 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:17:07.063 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:19:11.034 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:19:11.036 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:19:11.255 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:19:11.613 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:19:14.368 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:19:14.866 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:19:23.522 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:19:24.471 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:19:24.484 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:19:24.508 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:19:27.318 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:19:27.318 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:19:27.514 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:19:32.216 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:20:05.435 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:20:05.438 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:20:05.620 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:20:05.935 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:20:08.503 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:20:09.076 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:20:17.149 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:20:18.095 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:20:18.099 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:20:18.101 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:20:20.915 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:20:20.915 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:20:20.916 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:20:54.846 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:23:11.517 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:23:11.519 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:23:11.693 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:23:11.996 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:23:14.531 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:23:15.060 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:23:23.637 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:23:24.550 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:23:24.555 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:23:24.569 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:23:27.380 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:23:27.718 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:23:28.299 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:23:33.393 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:25:10.993 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:25:10.995 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:25:11.170 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:25:11.472 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:25:14.156 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:25:14.692 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:25:23.586 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:25:24.501 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:25:24.509 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:25:24.517 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:25:27.311 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:25:27.367 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:25:27.369 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:26:11.339 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/4fa31c2937e6e949cecc754ca273c6719a786c7b
+23:26:11.340 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+23:26:14.866 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:28:11.023 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:28:11.025 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:28:11.206 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:28:11.518 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:28:14.618 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:28:15.162 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:28:22.950 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:28:23.866 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:28:23.869 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:28:23.879 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:28:26.728 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:28:26.741 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:28:26.760 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:29:10.685 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/c271739040cc11fc3db8f9be5f24c644ed959936
+23:29:10.686 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+23:29:13.576 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+23:32:40.007 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+23:32:40.009 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+23:32:40.190 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:32:40.536 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+23:32:43.220 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:32:43.824 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+23:32:50.183 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+23:32:51.190 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:32:51.194 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:32:51.197 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+23:32:53.975 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:32:54.036 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:32:54.087 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+23:33:45.708 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/771200645120af425f5fabd8aa86d0ae4579b407
+23:33:45.709 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+23:33:49.645 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
+00:21:33.869 [main] INFO  c.browserstack.BrowserStackJavaAgent - Selenium version detected - 4.11.0
+00:21:33.870 [main] INFO  c.browserstack.BrowserStackJavaAgent - Appium version detected - 
+00:21:34.053 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+00:21:34.354 [main] INFO  c.browserstack.BrowserStackJavaAgent - Framework set to junit4
+00:21:37.105 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+00:21:37.765 [main] INFO  c.browserstack.BrowserStackJavaAgent - Starting BrowserStack Local......
+00:21:46.919 [main] INFO  com.browserstack.LocalFactory - BrowserStack Local Started Successfully.
+00:21:47.886 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+00:21:47.893 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+00:21:47.902 [main] INFO  c.browserstack.utils.UtilityMethods - BrowserStack Yml Detected : /Users/adarsh/Documents/CE/gitHubCloneProjects/browserstack-examples-junit4/browserstack.yml
+00:21:50.781 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+00:21:50.781 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+00:21:50.834 [main] WARN  c.b.config.BrowserStackConfig - Test Observability could not be enabled because framework detected is junit4. We currently support frameworks testng & cucumber-testng.
+00:26:15.513 [Thread-0] INFO  c.browserstack.utils.UtilityMethods - View build on BrowserStack dashboard: https://automate.browserstack.com/dashboard/v2/builds/6631910a02ee2b790cbf77bc16e8c15ac1ceb686
+00:26:15.514 [Thread-0] INFO  c.b.config.BrowserStackConfig - INFO
+00:26:19.160 [Thread-3] INFO  com.browserstack.LocalFactory - BrowserStack Local Stopped Successfully.
