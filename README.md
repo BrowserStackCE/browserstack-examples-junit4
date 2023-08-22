@@ -37,20 +37,21 @@ The Selenium tests could be ran on different platforms like on-prem, docker and 
 
 This repository contains the following Selenium tests:
 
-| Module  | Test name                          | Description |
----------| ---   | ---                                   | --- |
-| E2E     | Regression                | This test scenario verifies successful product purchase lifecycle end-to-end. It demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
-| LocalTest       | BStackLocalTest          | This test verifies the workflow of locally hosted webistes, by navigating to  localhost:3000 url |
-| Login   | NavigateToLoginPage          | This test verifies the workflow of navigating to Login Page |
-| Login   | LockedUserTest              | This test verifies the login workflow error for a locked user. |
-| Offers  | CheckOffers     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
-| Product | ApplyingSamsungAndAppleFilter          | This test verifies that Apple and Samsung products are only shown by applying Samsung and Apple vendor filter. |
-| Product | SortLowestToHighest   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
-| User    | ImageNotLoading | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
-| User    | CheckExistingOrders |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
-| User    | CheckFavourites |  This test verifies that Favourites items are shown for user:  "fav_user"|
+| Module   | Test name                          | Description |
+  | ---   | ---                                   | --- |
+| E2E      | Regression                | This test scenario verifies successful product purchase lifecycle end-to-end. It demonstrates the [Page Object Model design pattern](https://www.browserstack.com/guide/page-object-model-in-selenium) and is also the default test executed in all the single test run profiles. |
+| LocalTest    | BStackLocalTest          | This test verifies the workflow of locally hosted webistes, by navigating to http://localhost:45454/ url |
+| Login    | NavigateToLoginPage          | This test verifies the workflow of navigating to Login Page |
+| Login    | LockedUserTest              | This test verifies the login workflow error for a locked user. |
+| Offers   | CheckOffers     | This test mocks the GPS location for Mumbai and verifies that the product offers applicable for the Mumbai location are shown.   |
+| Product  | ApplyingSamsungAndAppleFilter          | This test verifies that Apple and Samsung products are only shown by applying Samsung and Apple vendor filter. |
+| Product  | SortLowestToHighest   | This test verifies that the product prices are in ascending order when the product sort "Lowest to Highest" is applied. |
+| User     | ImageNotLoading | This test verifies that the product images load for user: "image_not_loading_user" on the e-commerce application. Since the images do not load, the test case assertion fails.|
+| User     | CheckExistingOrders |  This test verifies that existing orders are shown for user: "existing_orders_user"  |
+| User     | CheckFavourites |  This test verifies that Favourites items are shown for user:  "fav_user"|
   
 ---
+
 
 
 ## Test infrastructure environments
@@ -73,6 +74,7 @@ For all the parallel run configuration profiles, you can configure the maximum p
 ## Test Reporting
 
 - [Allure reports](#generating-allure-reports)
+- [Test Observability](#generating-allure-reports)
 
 ---
 
@@ -125,130 +127,9 @@ Note: The ChromeDriver version must match the Chrome browser version on your mac
   This run profile executes a specific test scenario on a single browser instance on your own machine.
 
 
-### Run the entire test suite on your own machine
-
-- How to run the test?
-
-  To run the entire test suite on your own machine, use the following command:
-
-  Maven:
-  ```sh
-  mvn test -P on-prem-suite
-  ```
-
-  Gradle:
-  ```sh
-  gradle on_prem_suite
-  ```
-
-- Output
-
-  This run profile executes the entire test suite sequentially on a single browser, on your own machine.
-
-  
----
-
-# Docker
-
-[Docker](https://docs.docker.com/get-started/overview/) is an open source platform that provides the ability to package and test applications in an isolated environment called containers.
-
-## Prerequisites
-
-- Install and start [Docker](https://docs.docker.com/get-docker/).
-- Note: Docker should be running on the test machine. Ensure Docker Compose is installed as well.
-- Run `docker-compose pull ` from the current directory of the repository.
-
-## Running Your Tests
-
-### Run a specific test on the docker infrastructure
-
-- How to run the test?
-
-  - Start the Docker by running the following command:
-
-  ```sh
-  docker-compose up -d
-  ```
-
-  - To run the default test scenario (e.g. End to End Scenario) on your own machine, use the following command:
-
-  Maven:
-  ```sh
-  mvn test -P docker
-  ```
-
-  Gradle:
-    ```sh
-  gradle docker
-  ```
-
-  To run a specific test scenario, use the following command with the additional 'test-name' argument:
-
-  Maven:
-  ```sh
-  mvn test -P docker -Dtest-name="<Test scenario name>"
-  ```
-
-  Gradle:
-  ```sh
-  gradle docker -Dtest-name="<Test scenario name>"
-  ```
-
-  where,  the argument 'test-name' can be any test case name configured in this repository.
-
-  E.g. "EndToEndTest", "LockedUserTest", "ImageNotLoading" or any of the other test scenario names, as outlined in [About the tests in this repository](#About-the-tests-in-this-repository) section.
-
-
-- After tests are complete, you can stop the Docker by running the following command:
-
-  ```sh
-  docker-compose down
-  ```
-
-- Output
-
-  This run profile executes a specific test scenario on a single browser deployed on a docker image.
-
-
-### Run the entire test suite in parallel using Docker
-
-- How to run the test?
-
-  - Start the docker image first by running the following command:
-
-  ```sh
-  docker-compose up -d
-  ```
-
-  - To run the entire test suite in parallel on the docker image, use the following command:
-
-  Maven:
-  ```sh
-  mvn test -P docker-parallel
-  ```
-
-  Gradle:
-  ```sh
-  gradle docker_parallel
-  ```
-
-  - After the tests are complete stop the Selenium grid by running the following command:
-
-  ```sh
-  docker-compose down
-  ```
-
-- Output
-
-  This run profile executes the entire test suite in parallel on a single browser, deployed on a docker image.
-
-- Note: By default, this execution would run maximum 5 test threads in parallel on Docker. Refer to the section ["Configuring the maximum parallel test threads for this repository"](#Configuring-the-maximum-parallel-test-threads-for-this-repository) for updating the parallel thread count based on your requirements.
-
----
-
 # BrowserStack
 
-[BrowserStack](https://browserstack.com) provides instant access to 2,000+ real mobile devices and browsers on a highly reliable cloud infrastructure that effortlessly scales as testing needs grow.
+[BrowserStack](https://browserstack.com) provides instant access to 3,000+ real mobile devices and browsers on a highly reliable cloud infrastructure that effortlessly scales as testing needs grow.
 
 ## Prerequisites
 
