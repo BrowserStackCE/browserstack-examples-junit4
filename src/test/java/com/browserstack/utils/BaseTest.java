@@ -1,8 +1,8 @@
 package com.browserstack.utils;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -10,8 +10,8 @@ public class BaseTest {
 
     public static WebDriver webDriver;
 
-    @BeforeClass
-    public static void init() {
+    @Before
+    public void init() {
         if (StringUtils.equalsIgnoreCase(System.getProperty("browserstack-local"), "true")) {
             System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
             webDriver = new ChromeDriver();
@@ -22,8 +22,8 @@ public class BaseTest {
         }
     }
 
-    @AfterClass
-    public static void teardown() {
+    @After
+    public void teardown() {
         if (webDriver != null) {
             webDriver.quit();
         }
