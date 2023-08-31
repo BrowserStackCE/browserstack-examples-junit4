@@ -21,9 +21,7 @@ public class ApplyingSamsungAndAppleFilter extends BaseTest {
     public void applyingAppleAndSamsungFilters() throws Exception {
 
         /* =================== Prepare ================= */
-//        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-//        webDriver.get(getTestEndpoint());
 
         /* =================== Execute ================= */
         int initialProductCount = webDriver.findElements(By.className("shelf-item")).size();
