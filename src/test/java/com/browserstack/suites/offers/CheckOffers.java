@@ -42,7 +42,6 @@ public class CheckOffers extends BaseTest {
                 .visibilityOfElementLocated(By
                         .id("react-select-3-input"))).sendKeys("testingisfun99", Keys.ENTER);
         webDriver.findElement(By.id("login-btn")).click();
-        //wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/?signin=true"));
         wait.until(ExpectedConditions.urlContains("signin=true"));
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By

@@ -25,7 +25,6 @@ public class CheckFavourites extends BaseTest {
     public void checkFavourites() throws Exception {
 
         /* =================== Prepare ================= */
-
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
         /* =================== Execute ================= */
