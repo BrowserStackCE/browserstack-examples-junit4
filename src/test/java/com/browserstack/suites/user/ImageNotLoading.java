@@ -25,9 +25,7 @@ public class ImageNotLoading extends BaseTest {
     @Test
     public void imageNotLoading() throws Exception {
         /* =================== Prepare ================= */
-//        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-//        webDriver.get(getTestEndpoint());
 
         /* =================== Execute ================= */
         wait.until(ExpectedConditions

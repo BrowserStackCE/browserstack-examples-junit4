@@ -24,10 +24,7 @@ public class SortLowestToHighest extends BaseTest {
     public void lowestToHighest() throws Exception {
 
         /* =================== Prepare ================= */
-//        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-//        webDriver.get(getTestEndpoint());
-
         /* =================== Execute ================= */
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By
