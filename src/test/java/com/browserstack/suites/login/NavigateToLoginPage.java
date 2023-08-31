@@ -21,9 +21,7 @@ public class NavigateToLoginPage extends BaseTest {
     public void navigateToLoginPage() throws Exception {
 
         /* =================== Prepare ================= */
-//        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-//        webDriver.get(getTestEndpoint());
 
         /* =================== Execute ================= */
         wait.until(waitWebDriver -> waitWebDriver.findElements(By.
