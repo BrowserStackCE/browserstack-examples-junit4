@@ -18,9 +18,9 @@ public class Checkout {
 	public final static String POSTALCODELOCATOR = "postCodeInput";
 	public final static String SUBMITLOCATOR = "checkout-shipping-continue";
 
-	public final static String FIRSTNAME = "Bhagyesh";
-	public final static String LASTNAME = "Nanwani";
-	public final static String ADDRESS = "Street1,New York";
+	public final static String FIRSTNAME = "John";
+	public final static String LASTNAME = "Doe";
+	public final static String ADDRESS = "Street 1,New York";
 	public final static String STATE = "New York";
 	public final static String POSTALCODE = "401105";
 

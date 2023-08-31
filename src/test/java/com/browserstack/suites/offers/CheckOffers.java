@@ -1,10 +1,8 @@
 package com.browserstack.suites.offers;
 
+import com.browserstack.utils.BaseTest;
 import com.browserstack.utils.Constants;
-import com.browserstack.webdriver.junit4.AbstractWebDriverTest;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -14,11 +12,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
+
 import static org.junit.Assert.assertTrue;
 import static org.openqa.selenium.Keys.ENTER;
 
-@RunWith(Parameterized.class)
-public class CheckOffers extends AbstractWebDriverTest {
+
+public class CheckOffers extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckOffers.class);
 
@@ -26,9 +26,7 @@ public class CheckOffers extends AbstractWebDriverTest {
     public void checkOffers() throws Exception {
 
         /* =================== Prepare ================= */
-        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        webDriver.get(getTestEndpoint());
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
         /* =================== Execute ================= */
         String locationScript = String.format(Constants.LOCATION_SCRIPT_FORMAT, Constants.OFFER_LATITUDE, Constants.OFFER_LONGITUDE);
@@ -44,7 +42,6 @@ public class CheckOffers extends AbstractWebDriverTest {
                 .visibilityOfElementLocated(By
                         .id("react-select-3-input"))).sendKeys("testingisfun99", Keys.ENTER);
         webDriver.findElement(By.id("login-btn")).click();
-        //wait.until(ExpectedConditions.urlToBe("https://bstackdemo.com/?signin=true"));
         wait.until(ExpectedConditions.urlContains("signin=true"));
         wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By

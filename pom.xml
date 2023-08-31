@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.browserstack</groupId>
@@ -12,49 +13,16 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <junit.version>4.12</junit.version>
-        <selenium-java.version>3.141.59</selenium-java.version>
-        <jackson.version>2.12.2</jackson.version>
-        <logback.version>1.2.3</logback.version>
-        <capabilities.config.file>capabilities.yml</capabilities.config.file>
-        <parallel.count>5</parallel.count>
-        <parallel.type>classes</parallel.type>
-        <aspectj.version>1.8.10</aspectj.version>
-        <included.tests>com/browserstack/suites/**/EndToEndTest.java</included.tests>
-        <test-name>com/browserstack/suites/**/EndToEndTest.java</test-name>
-        <BUILD_TIME>${maven.build.timestamp}</BUILD_TIME>
     </properties>
 
+
     <dependencies>
-
-        <dependency>
-            <groupId>com.browserstack</groupId>
-            <artifactId>browserstack-local-java</artifactId>
-            <version>1.0.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.browserstack</groupId>
-            <artifactId>webdriver-framework-junit4</artifactId>
-            <version>0.0.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-yaml</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -66,175 +34,182 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium-java.version}</version>
+            <version>4.11.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
 
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit4</artifactId>
-            <version>2.13.8</version>
+            <groupId>com.browserstack</groupId>
+            <artifactId>browserstack-java-sdk</artifactId>
+            <version>LATEST</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>2.22.2</version>
                 <configuration>
-                    <includes>
-                        <included.tests>${included.tests}</included.tests>
-                    </includes>
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                    </argLine>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>io.qameta.allure.junit4.AllureJunit4</value>
-                        </property>
-                    </properties>
-                    <systemPropertyVariables>
-                        <capabilities.config>${capabilities.config.file}</capabilities.config>
-                        <test-name>System.getProperty("test-name")</test-name>
-                    </systemPropertyVariables>
-                    <parallel>${parallel.type}</parallel>
-                    <threadCountMethods>${parallel.count}</threadCountMethods>
-                    <perCoreThreadCount>false</perCoreThreadCount>
-                    <useUnlimitedThreads>true</useUnlimitedThreads>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>-Dorg.junit.platform.console.output=XML</argLine>
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                </dependencies>
             </plugin>
-    </plugins>
-
+        </plugins>
     </build>
+
 
     <profiles>
         <profile>
-            <id>docker-parallel</id>
-            <properties>
-                <capabilities.config.file>capabilities-docker-parallel.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/*.java</included.tests>
-                <parallel.type>all</parallel.type>
-            </properties>
+            <id>on-prem</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.1.2</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <browserstack-local>false</browserstack-local>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>suites/e2e/Regression.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.3.0</version>
+                        <executions>
+                            <execution>
+                                <id>getClasspathFilenames</id>
+                                <goals>
+                                    <goal>properties</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
         </profile>
-
-
-        <profile>
-            <id>bstack-parallel</id>
-            <properties>
-                <capabilities.config.file>capabilities-bstack-parallel.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/*.java</included.tests>
-                <parallel.type>all</parallel.type>
-                <threadCountMethods>5</threadCountMethods>
-            </properties>
-        </profile>
-
-
-        <profile>
-            <id>on-prem-suite</id>
-            <properties>
-                <capabilities.config.file>capabilities-on-prem-suite.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/*.java</included.tests>
-                <parallel.type>classes</parallel.type>
-            </properties>
-        </profile>
-
 
         <profile>
             <id>bstack-single</id>
-            <properties>
-                <capabilities.config.file>capabilities-bstack-single.yml</capabilities.config.file>
-                <included.tests>${test-name}</included.tests>
-                <parallel.type>classes</parallel.type>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.1.2</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <browserstack-local>false</browserstack-local>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>suites/e2e/Regression.java</include>
+                            </includes>
+                            <argLine>
+                                -javaagent:${com.browserstack:browserstack-java-sdk:jar}
+
+                            </argLine>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.6.0</version>
+                        <executions>
+                            <execution>
+                                <id>getClasspathFilenames</id>
+                                <goals>
+                                    <goal>properties</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+
         </profile>
-
-
         <profile>
-            <id>on-prem</id>
-            <properties>
-                <capabilities.config.file>capabilities-on-prem.yml</capabilities.config.file>
-                <included.tests>${test-name}</included.tests>
-                <parallel.type>all</parallel.type>
-            </properties>
+            <id>bstack-parallel-suite</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <argLine>
+                                -javaagent:${com.browserstack:browserstack-java-sdk:jar}
+                            </argLine>
+                            <systemPropertyVariables>
+                                <browserstack-local>false</browserstack-local>
+                            </systemPropertyVariables>
+                            <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+                            <testClassesDirectory>${project.build.directory}/test-classes</testClassesDirectory>
+                            <includes>
+                                <include>**/suites/**/*.java</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.6.0</version>
+                        <executions>
+                            <execution>
+                                <id>getClasspathFilenames</id>
+                                <goals>
+                                    <goal>properties</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
-
-
-        <profile>
-            <id>docker</id>
-            <properties>
-                <capabilities.config.file>capabilities-docker.yml</capabilities.config.file>
-                <included.tests>${test-name}</included.tests>
-                <parallel>all</parallel>
-            </properties>
-        </profile>
-
-
-        <profile>
-            <id>bstack-parallel-browsers</id>
-            <properties>
-                <capabilities.config.file>capabilities-bstack-parallel-browsers.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/*.java</included.tests>
-                <parallel.type>all</parallel.type>
-                <threadCountMethods>5</threadCountMethods>
-            </properties>
-        </profile>
-
 
         <profile>
             <id>bstack-local</id>
-            <properties>
-                <capabilities.config.file>capabilities-bstack-local.yml</capabilities.config.file>
-                <included.tests>${test-name}</included.tests>
-                <parallel.type>all</parallel.type>
-            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>2.22.2</version>
+                        <configuration>
+                            <systemPropertyVariables>
+                                <browserstack-local>true</browserstack-local>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>**/suites/localTest/**/*.java</include>
+                            </includes>
+                            <argLine>
+                                -javaagent:${com.browserstack:browserstack-java-sdk:jar}
+                            </argLine>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.6.0</version>
+                        <executions>
+                            <execution>
+                                <id>getClasspathFilenames</id>
+                                <goals>
+                                    <goal>properties</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
-
-
-        <profile>
-            <id>bstack-local-parallel-browsers</id>
-            <properties>
-                <capabilities.config.file>capabilities-bstack-local-parallel-browsers.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/*.java</included.tests>
-                <parallel.type>all</parallel.type>
-                <threadCountMethods>5</threadCountMethods>
-            </properties>
-        </profile>
-
-
-        <profile>
-            <id>bstack-local-parallel</id>
-            <properties>
-                <capabilities.config.file>capabilities-bstack-local-parallel.yml</capabilities.config.file>
-                <included.tests>com/browserstack/suites/**/*.java</included.tests>
-                <parallel.type>all</parallel.type>
-                <threadCountMethods>5</threadCountMethods>
-            </properties>
-        </profile>
-
     </profiles>
 
 </project>

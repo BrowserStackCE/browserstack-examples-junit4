@@ -1,6 +1,6 @@
 package com.browserstack.suites.product;
 
-import com.browserstack.webdriver.junit4.AbstractWebDriverTest;
+import com.browserstack.utils.BaseTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -11,8 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@RunWith(Parameterized.class)
-public class ApplyingSamsungAndAppleFilter extends AbstractWebDriverTest {
+import java.time.Duration;
+
+public class ApplyingSamsungAndAppleFilter extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplyingSamsungAndAppleFilter.class);
 
@@ -20,9 +21,7 @@ public class ApplyingSamsungAndAppleFilter extends AbstractWebDriverTest {
     public void applyingAppleAndSamsungFilters() throws Exception {
 
         /* =================== Prepare ================= */
-        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        webDriver.get(getTestEndpoint());
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
         /* =================== Execute ================= */
         int initialProductCount = webDriver.findElements(By.className("shelf-item")).size();

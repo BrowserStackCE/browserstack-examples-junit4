@@ -1,6 +1,6 @@
 package com.browserstack.suites.user;
 
-import com.browserstack.webdriver.junit4.AbstractWebDriverTest;
+import com.browserstack.utils.BaseTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -12,19 +12,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Duration;
+
 import static org.openqa.selenium.Keys.ENTER;
 
-@RunWith(Parameterized.class)
-public class CheckExistingOrders extends AbstractWebDriverTest {
+public class CheckExistingOrders extends BaseTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CheckExistingOrders.class);
     @Test
     public void checkExistingOrders() throws Exception {
 
         /* =================== Prepare ================= */
-        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        webDriver.get(getTestEndpoint());
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
 
         /* =================== Execute ================= */
         wait.until(ExpectedConditions
