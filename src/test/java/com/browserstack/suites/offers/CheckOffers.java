@@ -26,9 +26,7 @@ public class CheckOffers extends BaseTest {
     public void checkOffers() throws Exception {
 
         /* =================== Prepare ================= */
-//        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
         WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-//        webDriver.get(getTestEndpoint());
 
         /* =================== Execute ================= */
         String locationScript = String.format(Constants.LOCATION_SCRIPT_FORMAT, Constants.OFFER_LATITUDE, Constants.OFFER_LONGITUDE);
