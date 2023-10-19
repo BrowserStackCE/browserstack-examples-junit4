@@ -157,6 +157,8 @@
                             <includes>
                                 <include>**/suites/**/*.java</include>
                             </includes>
+                                <parallel>classes</parallel>
+                                <threadCount>5</threadCount>
                         </configuration>
                     </plugin>
                     <plugin>
