@@ -52,5 +52,72 @@ public class LockedUserTest extends BaseTest {
         assertTrue(CheckIfDisplayed == true);
 
     }
+    @Test
+    public void secondLockedUserTest() throws Exception {
+
+
+        /* =================== Prepare ================= */
+//        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+//        webDriver.get(getTestEndpoint());
+
+        /* =================== Execute ================= */
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .id("signin"))).click();
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .id("react-select-2-input"))).sendKeys("locked_user", ENTER);
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .id("react-select-3-input"))).sendKeys("testingisfun99\n");
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .id("login-btn"))).sendKeys(Keys.RETURN);
+
+
+
+        /* =================== Verify ================= */
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .className("api-error")));
+        boolean CheckIfDisplayed = webDriver.findElement(By.className("api-error")).isDisplayed();
+        assertTrue(CheckIfDisplayed == true);
+
+    }
+
+    @Test
+    public void thirdLockedUserTest() throws Exception {
+
+
+        /* =================== Prepare ================= */
+//        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+//        webDriver.get(getTestEndpoint());
+
+        /* =================== Execute ================= */
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .id("signin"))).click();
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .id("react-select-2-input"))).sendKeys("locked_user", ENTER);
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .id("react-select-3-input"))).sendKeys("testingisfun99\n");
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .id("login-btn"))).sendKeys(Keys.RETURN);
+
+
+
+        /* =================== Verify ================= */
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .className("api-error")));
+        boolean CheckIfDisplayed = webDriver.findElement(By.className("api-error")).isDisplayed();
+        assertTrue(CheckIfDisplayed == true);
+
+    }
 
 }

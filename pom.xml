@@ -112,7 +112,7 @@
                                 <browserstack-local>false</browserstack-local>
                             </systemPropertyVariables>
                             <includes>
-                                <include>suites/e2e/Regression.java</include>
+                                <include>suites/e2e/*</include>
                             </includes>
                             <argLine>
                                 -javaagent:${com.browserstack:browserstack-java-sdk:jar}

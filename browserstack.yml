@@ -6,19 +6,19 @@ buildIdentifier: '${BUILD_NUMBER}'
 framework: junit4
 
 platforms:
-  - os: OS X
-    osVersion: Big Sur
-    browserName: Chrome
-    browserVersion: latest
+#  - os: OS X
+#    osVersion: Big Sur
+#    browserName: Chrome
+#    browserVersion: latest
   - os: Windows
     osVersion: 10
-    browserName: Edge
+    browserName: Chrome
     browserVersion: latest
-  - deviceName: Samsung Galaxy S22 Ultra
-    browserName: chrome
-    osVersion: 12.0
+#  - deviceName: Samsung Galaxy S22 Ultra
+#    browserName: chrome
+#    osVersion: 12.0
 
-parallelsPerPlatform: 3 #comment out this line if you are using the parallelization strategy of JUNIT4
+parallelsPerPlatform: 15 #comment out this line if you are using the parallelization strategy of JUNIT4
 
 source: junit4:sdk-archetype-integrate:v1.0
 

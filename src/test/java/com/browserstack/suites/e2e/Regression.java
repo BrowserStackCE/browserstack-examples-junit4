@@ -40,4 +40,54 @@ public class Regression extends BaseTest {
 
     }
 
+    @Test
+    public void secondEndToEndTest() throws Exception {
+
+        // Initialize WebDriverWait using the WebDriver instance
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+
+        /* =================== Execute ================= */
+        HomePage homepage = new HomePage(webDriver, wait);
+        Login login = new Login(webDriver);
+        Bag bag = new Bag(webDriver, wait);
+        Checkout checkout = new Checkout(webDriver, wait);
+        Confirmation confirmation = new Confirmation(webDriver, wait);
+        FavUserHomePage favUserHomePage = new FavUserHomePage(webDriver ,wait);
+
+        /* =================== Verify ================= */
+
+        wait.until(ExpectedConditions.urlContains("/orders"));
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .className("item-view-left-col-inner")));
+        int count = webDriver.findElements(By.className("item-view-left-col-inner")).size();
+        assertTrue(count == 3);
+
+    }
+
+    @Test
+    public void thirdEndToEndTest() throws Exception {
+
+        // Initialize WebDriverWait using the WebDriver instance
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+
+        /* =================== Execute ================= */
+        HomePage homepage = new HomePage(webDriver, wait);
+        Login login = new Login(webDriver);
+        Bag bag = new Bag(webDriver, wait);
+        Checkout checkout = new Checkout(webDriver, wait);
+        Confirmation confirmation = new Confirmation(webDriver, wait);
+        FavUserHomePage favUserHomePage = new FavUserHomePage(webDriver ,wait);
+
+        /* =================== Verify ================= */
+
+        wait.until(ExpectedConditions.urlContains("/orders"));
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                        .className("item-view-left-col-inner")));
+        int count = webDriver.findElements(By.className("item-view-left-col-inner")).size();
+        assertTrue(count == 3);
+
+    }
+
 }

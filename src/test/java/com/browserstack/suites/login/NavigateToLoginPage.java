@@ -39,6 +39,28 @@ public class NavigateToLoginPage extends BaseTest {
 
     }
 
+    @Test
+    public void performLogin() throws Exception {
+
+        /* =================== Prepare ================= */
+//        WebDriver webDriver = this.webDriverProviderRule.getWebDriver(platform);
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+//        webDriver.get(getTestEndpoint());
+
+        /* =================== Execute ================= */
+        wait.until(waitWebDriver -> waitWebDriver.findElements(By.
+                        cssSelector(".spinner"))
+                .isEmpty());
+        wait.until(ExpectedConditions.elementToBeClickable(By
+                .id("favourites"))).click();
+
+        /* =================== Verify ================= */
+        wait.until(ExpectedConditions.urlContains("signin?favourites=true"));
+        String CurrentUrl = webDriver.getCurrentUrl();
+        assertTrue(CurrentUrl.contains("signin?favourites=true"));
+
+    }
+
 }
 
 
